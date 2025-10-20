@@ -1,0 +1,101 @@
+@*@{
+    ViewData["Title"] = "User Dashboard";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2>Welcome to ATI-IEC Portal</h2>
+        <p class="text-muted">Choose an option below to continue</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <!-- Option 1: IEC -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-lg text-center p-4 h-100">
+                <h4 class="mb-3">📚 Read & Request IEC</h4>
+                <p class="text-muted">Browse IEC materials or request copies based on availability.</p>
+                <a href="@Url.Action("Index", "Iec")" class="btn btn-primary btn-lg mt-auto">
+                    Go to IEC Library
+                </a>
+            </div>
+        </div>
+
+        <!-- Option 2: KPS -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-lg text-center p-4 h-100">
+                <h4 class="mb-3">📝 Request KPS</h4>
+                <p class="text-muted">Download the official KPS request form and follow instructions.</p>
+                <a href="@Url.Action("Instructions", "Kps")" class="btn btn-success btn-lg mt-auto">
+                    Request KPS
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+*@
+@*
+@{
+    ViewData["Title"] = "User Dashboard";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">📌 Dashboard</h2>
+    <p>Welcome! Please choose an option below:</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-lg p-4 text-center">
+                <h4>📚 IEC Library</h4>
+                <p>Browse and read IEC materials.</p>
+                <a asp-controller="Home" asp-action="IecLibrary" class="btn btn-primary">
+                    Go to IEC Library
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-lg p-4 text-center">
+                <h4>📝 Request KPS</h4>
+                <p>Submit a Knowledge Product Support request.</p>
+                <a asp-controller="Kps" asp-action="Instructions" class="btn btn-success">
+                    Request KPS
+                </a>
+            </div>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-4">⬅ Back to Home</a>
+        </div>
+    </div>
+</div>
+*@
+<div class="container mt-5">
+    <h2 class="mb-4">Dashboard</h2>
+    <p>Welcome! Please choose an option below:</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-lg p-4 text-center">
+                <h4>📚 IEC Library</h4>
+                <p>Browse and read IEC materials.</p>
+                <a asp-controller="Home" asp-action="IecLibrary" class="btn btn-primary">
+                    Go to IEC Library
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-lg p-4 text-center">
+                <h4>📝 Request KPS</h4>
+                <p>Submit a Knowledge Product Support request.</p>
+                <a asp-controller="Kps" asp-action="Instructions" class="btn btn-success">
+                    Request KPS
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Centered Back to Home -->
+    <div class="text-center mt-4">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+            ⬅ Back to Home
+        </a>
+    </div>
+</div>

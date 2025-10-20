@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "Main Dashboard";
+}
+
+<!-- 🔹 Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="~/videos/farm.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+<!-- 🔹 Overlay Content -->
+<div class="dashboard-overlay">
+    <div class="dashboard-container text-white">
+        <h1 class="mb-4 text-center fw-bold">Please choose your transaction</h1>
+
+        <div class="parent">
+            <a asp-controller="Home" asp-action="ISS" asp-route-folder="Dashboard">Information Services Section (ISS)</a>
+            <a asp-controller="Home" asp-action="PAS" asp-route-folder="Dashboard">Partnership & Accreditation Section (PAS)</a>
+            <a asp-controller="Home" asp-action="AFU" asp-route-folder="Dashboard">Admin and Finance Unit (AFU)</a>
+            <a asp-controller="Home" asp-action="CDMS" asp-route-folder="Dashboard">Career Development and Management Section (CDMS)</a>
+            <a asp-controller="Home" asp-action="PMEU" asp-route-folder="Dashboard">Planning, Monitoring, and Evaluation Unit (PMEU)</a>
+            <a asp-controller="Home" asp-action="BAC" asp-route-folder="Dashboard">Bids and Awards Committee (BAC)</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    #bg-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    .dashboard-overlay {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.4);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .dashboard-container {
+        width: 100%;
+        max-width: 1200px;
+        text-align: center;
+    }
+
+    .parent {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* ✅ 3 per row */
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .parent > a {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 40px 20px;
+        border-radius: 12px;
+        color: #2e7d32;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .parent > a:hover {
+        background-color: rgba(232, 245, 233, 0.95);
+        transform: translateY(-5px);
+    }
+
+    h1 {
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+</style>

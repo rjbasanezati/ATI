@@ -1,0 +1,68 @@
+﻿@model List<ATI_IEC.Models.UserReader>
+
+@{
+    ViewData["Title"] = "Reader List";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Registered Users</h2>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Office</th>
+                <th>Contact Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var reader in Model)
+                {
+                    <tr>
+                        <td>@reader.Name</td>
+                        <td>@reader.Email</td>
+                        <td>@reader.Password</td>
+                        <td>@reader.Office</td>
+                        <td>@reader.ContactNumber</td>
+                        <td>
+                            <form asp-action="DeleteReader" asp-route-id="@reader.Id" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted">No registered users found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container {
+        max-width: 900px;
+    }
+
+    table th, table td {
+        vertical-align: middle !important;
+    }
+
+    h2 {
+        color: #198754;
+    }
+
+    .btn-danger {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+</style>
+

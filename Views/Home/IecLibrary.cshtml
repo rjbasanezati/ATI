@@ -1,0 +1,108 @@
+﻿@*@model List<ATI_IEC.Models.IecDocument>
+@{
+    ViewData["Title"] = "IEC Library";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2>📚 IEC Library</h2>
+        <p class="text-muted">Browse and download available IEC materials</p>
+    </div>
+
+    <!-- Search -->
+    <form method="get" class="mb-4 text-center">
+        <input type="text" name="searchString" 
+               class="form-control w-50 d-inline" 
+               placeholder="Search by title..." 
+               value="@Context.Request.Query["searchString"]" />
+        <button type="submit" class="btn btn-primary">🔍 Search</button>
+    </form>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="row">
+            @foreach (var doc in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-lg h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@doc.Title</h5>
+                            <p class="card-text text-muted">
+                                @(!string.IsNullOrEmpty(doc.Description) ? doc.Description : "No description available.")
+                            </p>
+
+                            <!-- PDF Preview -->
+                            <iframe src="@doc.FilePath" width="100%" height="250px" class="mb-3" style="border:1px solid #ddd;"></iframe>
+
+                            <!-- Actions -->
+                            <div class="text-center">
+                                <a href="@doc.FilePath" target="_blank" class="btn btn-sm btn-primary me-2">
+                                    👁️ Open Full
+                                </a>
+                                <a href="@doc.FilePath" download class="btn btn-sm btn-success">
+                                    📥 Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">
+            No IEC materials available.
+        </div>
+    }
+</div>
+*@
+@model IEnumerable<ATI_IEC.Models.IecDocument>
+
+@{
+    ViewData["Title"] = "IEC Library";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">📚 IEC Library</h2>
+
+    <form method="get" asp-action="IecLibrary" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="searchString" class="form-control" placeholder="Search IEC materials..." />
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <div class="row">
+        @foreach (var doc in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title">@doc.Title</h5>
+                        <p class="card-text">Uploaded: @doc.UploadDate.ToString("MMMM dd, yyyy")</p>
+
+                        <!-- PDF Preview -->
+                        <iframe src="@doc.FilePath" width="100%" height="400px"></iframe>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <!-- Open Full & Download -->
+                            
+                            <a href="@doc.FilePath" target="_blank" class="btn btn-sm btn-primary me-2">
+                                    📖 Open Full
+                                </a>
+                                <a href="@doc.FilePath" download class="btn btn-sm btn-success">
+                                    📥 Download
+                                </a>
+
+                            <!-- Request Hard Copy -->
+                            <a asp-controller="Kps" asp-action="Instructions" class="btn btn-success">
+                               📄 Request Hard Copy
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    <div class="text-center mt-4">
+</div>

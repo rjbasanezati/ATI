@@ -1,0 +1,169 @@
+﻿@*@model ATI_IEC.Models.UserReader
+
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="~/videos/farm.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+<div class="content-overlay">
+    <div class="text-center text-white">
+        <h1 class="display-4 mb-4">Welcome to ATI</h1>
+        <p class="lead">Register below to access IEC materials and request KPS.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center mb-3">User Registration</h3>
+
+                <form asp-action="Register" method="post">
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="ContactNumber" class="form-label"></label>
+                        <input asp-for="ContactNumber" class="form-control" />
+                        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Barangay" class="form-label"></label>
+                        <input asp-for="Barangay" class="form-control" />
+                        <span asp-validation-for="Barangay" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Agency" class="form-label"></label>
+                        <input asp-for="Agency" class="form-control" />
+                        <span asp-validation-for="Agency" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<style>
+    /* Fullscreen background video */
+    #bg-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    /* Content overlay */
+    .content-overlay {
+        position: relative;
+        z-index: 1;
+        padding: 60px 20px;
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+    }
+</style>
+*@
+@model ATI_IEC.Models.UserReader
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="~/videos/farm.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+<div class="content-overlay">
+    <div class="text-center text-white">
+        <h1 class="display-4 mb-4">Welcome to ATI</h1>
+        <p class="lead">Register below to access IEC materials and request KPS.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center mb-3">User Registration</h3>
+
+                <form asp-action="Register" method="post">
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="form-label">Full Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter your full name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Office" class="form-label">Office</label>
+                        <input asp-for="Office" class="form-control" placeholder="Enter your office name" />
+                        <span asp-validation-for="Office" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+              
+                        <label asp-for="ContactNumber" class="form-label">Contact Number</label>
+                        <input asp-for="ContactNumber" class="form-control" placeholder="Enter your contact number" />
+                        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Fullscreen background video */
+    #bg-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    /* Content overlay */
+    .content-overlay {
+        position: relative;
+        z-index: 1;
+        padding: 60px 20px;
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+    }
+
+    a.text-success:hover {
+        text-decoration: underline;
+    }
+</style>

@@ -1,0 +1,60 @@
+@*
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Admin Dashboard</h2>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <a asp-controller="Admin" asp-action="UploadIec" class="btn btn-primary w-100 p-3">
+                📂 Upload IEC Document
+            </a>
+        </div>
+        <div class="col-md-6 mb-3">
+            <a asp-controller="Home" asp-action="ReaderList" class="btn btn-secondary w-100 p-3">
+                👥 View Reader List
+            </a>
+        </div>
+       <div class="col-md-6 mb-3">
+            <a asp-controller="Kps" asp-action="Requests" class="btn btn-success w-100 p-3">
+                📝 View KPS Requests
+            </a>
+        </div>
+        
+        <div class="col-md-6 mb-3">
+            <a asp-controller="Home" asp-action="IecLibrary" class="btn btn-info w-100 p-3">
+                📖 View IEC Library
+            </a>
+        </div>
+    </div>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-4">⬅ Back to Home</a>
+</div>
+*@
+
+<div class="container mt-5 text-center">
+    <h2 class="mb-4">Admin Dashboard</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4 mb-3">
+            <a asp-controller="Admin" asp-action="UploadIec" class="btn btn-primary w-100 p-3">
+                📂 Upload IEC Document
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <a asp-controller="Home" asp-action="ReaderList" class="btn btn-success w-100 p-3">
+                👥 View Reader List
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-3">
+            <a asp-controller="Home" asp-action="IecLibrary" class="btn btn-info w-100 p-3">
+                📖 View IEC Library
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+            ⬅ Back to Home
+        </a>
+    </div>
+</div>

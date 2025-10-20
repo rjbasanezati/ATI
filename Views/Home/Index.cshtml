@@ -1,0 +1,82 @@
+@model ATI_IEC.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="~/videos/farm.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+<div class="content-overlay">
+    <div class="text-center text-white">
+        <h1 class="display-4 mb-4">Welcome to ATI Davao Region</h1>
+        <p class="lead">Please login for ATI RTC XI Services</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center mb-3">User Login</h3>
+
+                <form asp-action="Index" method="post">
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Login</button>
+
+                    <!-- Display login errors -->
+                    @if (ViewData.ModelState[""]?.Errors.Count > 0)
+                    {
+                        <div class="alert alert-danger mt-3">
+                            @ViewData.ModelState[""].Errors[0].ErrorMessage
+                        </div>
+                    }
+                </form>
+
+                <div class="text-center mt-3">
+                    <small>Don't have an account?</small>
+                    <a asp-controller="Home" asp-action="Register" class="text-success fw-bold">Create Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #bg-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    .content-overlay {
+        position: relative;
+        z-index: 1;
+        padding: 60px 20px;
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+    }
+
+    a.text-success:hover {
+        text-decoration: underline;
+    }
+</style>

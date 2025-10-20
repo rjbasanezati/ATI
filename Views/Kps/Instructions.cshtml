@@ -1,0 +1,154 @@
+@*
+@{
+    ViewData["Title"] = "KPS Request Instructions";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-3">KPS Request Instructions</h2>
+    <p>
+        Please read the instructions below before submitting your request:
+    </p>
+    <ul>
+        <li>📥 Download or preview the official <strong>KPS Request Form</strong> provided below.</li>
+        <li>🖊️ Fill out <strong>all required fields</strong> clearly and accurately.</li>
+        <li>📌 After filling it up, <strong>submit the accomplished form</strong> to the <strong>ATI ISS Office physically</strong>.</li>
+        <li>✉️ Alternatively, you may send the filled form via <strong>email</strong> if allowed by your office.</li>
+        <li>✅ Ensure that your contact information is correct so you can be notified about the status of your request.</li>
+    </ul>
+
+    <div class="card shadow p-4 mt-4">
+        <h5 class="mb-3">KPS Request Form</h5>
+
+        <!-- Embed the PDF form -->
+        <iframe src="~/kpsforms/KPS_Request_Form.pdf" 
+                width="100%" 
+                height="500px" 
+                style="border:1px solid #ccc; border-radius:8px;">
+        </iframe>
+
+        <!-- Action buttons -->
+        <div class="mt-3 text-center">
+            <a href="~/kpsforms/KPS_Request_Form.pdf" 
+               target="_blank" 
+               class="btn btn-primary me-2">
+               👁️ Preview
+            </a>
+            <a href="~/kpsforms/KPS_Request_Form.pdf" 
+               download 
+               class="btn btn-success">
+               📥 Download
+            </a>
+        </div>
+    </div>
+</div>
+*@
+
+@{
+    ViewData["Title"] = "Request Instructions";
+}
+
+<div class="container mt-5">
+    <h2>📑 KPS and IEC Hard Copy request Forms</h2>
+    <p class="mb-3">
+        To request a hard copy of an IEC material, please follow the steps below:
+    </p>
+
+    <ul>
+        <li>📥 Download or preview the official <strong>KPS Request Form</strong> provided below.</li>
+        <li>🖊️ Fill out <strong>all required fields</strong> clearly and accurately.</li>
+        <li>📌 After filling it up, <strong>submit the accomplished form</strong> to the <strong>ATI ISS Office physically</strong>.</li>
+        <li>✉️ Alternatively, you may send the filled form via <strong>email</strong> if allowed by your office.</li>
+        <li>✅ Ensure that your contact information is correct so you can be notified about the status of your request.</li>
+    </ul>
+
+    <h4 class="mt-4">Available Request Forms:</h4>
+
+
+    <!-- IEC Request Form -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><strong>IEC Request Form</strong></span>
+            <a href="~/kpsforms/Request_Form.pdf" class="btn btn-primary btn-sm" target="_blank">
+                Open Full & Download
+            </a>
+        </div>
+        <div class="card-body">
+            <iframe src="~/kpsforms/Request_Form.pdf#toolbar=0" 
+                    width="100%" height="400px" style="border: 1px solid #ccc;"></iframe>
+        </div>
+    </div>
+
+    <!-- KPS Request Form -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><strong>Feedback Form</strong></span>
+            <a href="~/kpsforms/Feedback_Form.pdf" class="btn btn-primary btn-sm" target="_blank">
+                Open Full & Download
+            </a>
+        </div>
+        <div class="card-body">
+            <iframe src="~/kpsforms/Feedback_Form.pdf#toolbar=0" 
+                    width="100%" height="400px" style="border: 1px solid #ccc;"></iframe>
+        </div>
+    </div>
+
+    <div class="alert alert-info mt-4">
+        <strong>Note:</strong> After filling out the form, submit it to our office for processing. 
+        You may also email it if allowed by your office.
+    </div>
+    <div class="text-center mt-4">
+    <a asp-controller="Dashboard" asp-action="Index" class="btn btn-secondary">
+        ⬅ Back to Dashboard
+    </a>
+</div>
+
+
+
+@*
+@{
+    ViewData["Title"] = "Request Instructions";
+}
+
+<div class="container mt-5">
+    <h2>📑 Request Hard Copy Instructions</h2>
+    <p class="mb-4">
+        To request a hard copy of an IEC material, please download and fill out one of the forms below. 
+        Once completed, submit it to our office or send it through the official channels.
+    </p>
+
+    <h4>Available Request Forms:</h4>
+
+    <!-- IEC Request Form -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><strong>IEC Request Form</strong></span>
+            <a href="~/kpsforms/IEC_Request_Form.pdf" class="btn btn-primary btn-sm" target="_blank">
+                Open Full & Download
+            </a>
+        </div>
+        <div class="card-body">
+            <iframe src="~/kpsforms/IEC_Request_Form.pdf#toolbar=0" 
+                    width="100%" height="400px" style="border: 1px solid #ccc;"></iframe>
+        </div>
+    </div>
+
+    <!-- KPS Request Form -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><strong>KPS Request Form</strong></span>
+            <a href="~/kpsforms/KPS_Request_Form.pdf" class="btn btn-primary btn-sm" target="_blank">
+                Open Full & Download
+            </a>
+        </div>
+        <div class="card-body">
+            <iframe src="~/kpsforms/KPS_Request_Form.pdf#toolbar=0" 
+                    width="100%" height="400px" style="border: 1px solid #ccc;"></iframe>
+        </div>
+    </div>
+
+    <div class="alert alert-info mt-4">
+        <strong>Note:</strong> After filling out the form, submit it to our office for processing. 
+        You may also email it if allowed by your office.
+    </div>
+</div>
+*@

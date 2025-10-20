@@ -1,0 +1,99 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATI IEC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+
+    <style>
+        /* --- Transparent Header --- */
+        header {
+            background-color: transparent; /* full transparency */
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .header-image {
+            width: 100%;
+            height: auto;
+            max-height: 160px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            opacity: 0.95; /* slight transparency for polish */
+        }
+
+        /* Optional: subtle fade under header for readability */
+        .header-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(0,0,0,0.05));
+        }
+
+        /* --- Admin/Login Buttons --- */
+        .header-bar {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            z-index: 10;
+        }
+
+        .btn-header {
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            padding: 6px 14px;
+            background-color: rgba(33, 111, 33, 0.85);
+            border: none;
+            color: white;
+        }
+
+        .btn-header:hover {
+            background-color: rgba(33, 111, 33, 1);
+        }
+
+        /* --- General Layout --- */
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffffff, #f5f8f5);
+        }
+
+        .container {
+            padding-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ✅ Transparent Header -->
+    <header>
+        <img src="~/images/Header.png" alt="ATI Header" class="header-image" />
+        <div class="header-overlay"></div>
+
+        <div class="header-bar">
+            @if (HttpContextAccessor.HttpContext?.Session.GetString("IsAdmin") == "true")
+            {
+                <a asp-controller="Admin" asp-action="Dashboard" class="btn-header">Dashboard</a>
+                <a asp-controller="Admin" asp-action="Logout" class="btn-header ms-2" style="background-color: rgba(180, 0, 0, 0.85);">Logout</a>
+            }
+            else
+            {
+                <a asp-controller="Admin" asp-action="Login" class="btn-header">Admin Login</a>
+            }
+        </div>
+    </header>
+
+    <!-- ✅ Page Content -->
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

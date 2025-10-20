@@ -1,0 +1,111 @@
+@{
+    ViewData["Title"] = "Information Services Section";
+}
+
+<!-- 🔹 Background Video -->
+<div class="video-background">
+    <video autoplay muted loop id="bg-video">
+        <source src="~/videos/farm.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<!-- 🔹 Transparent Overlay -->
+<div class="iss-overlay">
+    <div class="iss-container text-white text-center">
+        <h1 class="mb-3 fw-bold text-success">Information Services Section (ISS)</h1>
+        <h2 class="section-subtitle text-success">Please choose your transaction</h2>
+
+        <div class="iss-buttons">
+            <a asp-action="ISSRF" asp-controller="Home" class="iss-btn shadow-sm rounded">
+                IEC Request Form
+            </a>
+            <a asp-action="IecLibrary" asp-controller="Home" class="iss-btn shadow-sm rounded">
+                IEC Library
+            </a>
+            <a asp-action="ISSJR" asp-controller="Home" class="iss-btn shadow-sm rounded">
+                Job Request Form
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        overflow-x: hidden;
+    }
+
+    /* Background video */
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    #bg-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Overlay */
+    .iss-overlay {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.4);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    /* Container */
+    .iss-container {
+        width: 100%;
+        max-width: 1000px;
+        padding: 40px;
+    }
+
+    /* Subtitle */
+    .section-subtitle {
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Grid for buttons */
+    .iss-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        justify-items: center;
+    }
+
+    /* Button styling like main dashboard */
+    .iss-btn {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #2e7d32;
+        text-decoration: none;
+        padding: 35px 20px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 15px;
+        transition: all 0.25s ease-in-out;
+        backdrop-filter: blur(5px);
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .iss-btn:hover {
+        background-color: rgba(232, 245, 233, 0.95);
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+</style>

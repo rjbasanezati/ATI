@@ -1,0 +1,212 @@
+@model ATI_IEC.Models.RequestFormModel
+
+@{
+    ViewData["Title"] = "IEC Request Form";
+}
+
+<div class="form-container">
+    <h2 class="text-success mb-4 text-center">IEC Request Form</h2>
+
+    <form asp-action="SubmitISSRequest" asp-controller="Home" method="post">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Office" class="form-label">Office</label>
+                <input asp-for="Office" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Purpose" class="form-label">Purpose of Request</label>
+            <textarea asp-for="Purpose" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="DateRequested" class="form-label">Date Requested</label>
+                <input asp-for="DateRequested" type="date" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="DateOfDistribution" class="form-label">Date of Distribution</label>
+                <input asp-for="DateOfDistribution" type="date" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="TargetRecipients" class="form-label">Target Recipients</label>
+            <input asp-for="TargetRecipients" class="form-control" />
+        </div>
+        <!-- IEC Checklist Section -->
+<div class="mb-4">
+    <label class="form-label fw-bold">Select IEC Materials</label>
+
+    <div class="accordion" id="iecAccordion">
+
+        <!-- RCEF & RICE -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rice">
+                    RCEF & RICE
+                </button>
+            </h2>
+            <div id="rice" class="accordion-collapse collapse" data-bs-parent="#iecAccordion">
+                <div class="accordion-body">
+                    @foreach (var item in new[] {
+                        "Harmful Organism","Tipid ka Abonong Swak","Abono sa Palayan","Advance Agri-Apps",
+                        "Sorjan Cropping System","Ricefield Rats","Sakit ng palay labanan",
+                        "Limang Subok na barayti sa Pilipinas","Tamang pag-aani ng palay","Gabay sa pagsasabog tanim",
+                        "Ano ang El Niño at La niña","Pamamahala ng peste","Responsableng pamamahala ng sustansiya ng palay",
+                        "Pagiimbak ng mga binhi","Benificial Organism","Hybrid at Inbrid Rice","Pamamahala ng sustansiya",
+                        "Pagpapatuyo ng palay sa araw","Mga benepisyo ng pag gamit ng purong binhi","Leaf color chart",
+                        "La niña at Pagpapalayan","Paggawa ng floating raft garden"
+                    }) {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="RcefRiceSelected" value="@item" id="@item.Replace(" ", "")">
+                            <label class="form-check-label" for="@item.Replace(" ", "")">@item</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- CFIDP -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cfidp">
+                    CFIDP
+                </button>
+            </h2>
+            <div id="cfidp" class="accordion-collapse collapse" data-bs-parent="#iecAccordion">
+                <div class="accordion-body">
+                    @foreach (var item in new[] {
+                        "Coco LSA Learning Site for Agriculture","Boost Farm Productivity Use Cocopeat!",
+                        "Modernong Makinarya at Kagamitan","Scholarship","Basic Leadership Training for Small Scale Irrigation Project",
+                        "Spice Up with  Coconut Vinegar","Pagkalakal at Promosyon ng Produckto","Libreng Pagsasanay",
+                        "Imprastraktura at Makabagong Pasilidad","Cacao (Farm Establishment)","Coconut Vinegar","Coconut Water",
+                        "Pagpaparami at pamamahagi ng hybrid na niyog","Coconut-coffee farming system","Cocopeat","Pagtatanim ng kape at kakaw"
+                    }) {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="CFIDPSelected" value="@item">
+                            <label class="form-check-label">@item</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- LIVESTOCK -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#livestock">
+                    LIVESTOCK
+                </button>
+            </h2>
+            <div id="livestock" class="accordion-collapse collapse" data-bs-parent="#iecAccordion">
+                <div class="accordion-body">
+                    @foreach (var item in new[] {
+                        "Biosecurity Measures aron makalikay sa ASF","Tamang Pagtatago at Pag-inom ng Gatas",
+                        "Mga Katanungan at Kasagutan upang Makatiyak na Ligtas ang Pagkain","Beef Primal Cuts",
+                        "Milk Safety and Quality Assurance","Edible Offal of Swine","Pork cuts",
+                        "Mga Kamatuoran bahin sa Avian Influenza o Bird Flu","Animal Carcass Chicken Grading",
+                        "Ways to Maintain Frozen Meat Safety and Quality","Pagsugpo sa African Swine Fever",
+                        "Baka , kambing, at kalabaw sa niyugan","Avian Influenza o Bird Flu"
+                    }) {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="LivestockSelected" value="@item">
+                            <label class="form-check-label">@item</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- HVCDP -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hvcdp">
+                    HVCDP
+                </button>
+            </h2>
+            <div id="hvcdp" class="accordion-collapse collapse" data-bs-parent="#iecAccordion">
+                <div class="accordion-body">
+                    @foreach (var item in new[] {
+                        "Pagpaparami ng oranikong binhi ng palay gamit ang vermicompost at vermitea",
+                        "Cacao production Guide Cebuano","Calamansi (Production & Guide)","Coffee production and rahabilitation guide"
+                    }) {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="HVCDPSelected" value="@item">
+                            <label class="form-check-label">@item</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- ORGANIC -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#organic">
+                    ORGANIC
+                </button>
+            </h2>
+            <div id="organic" class="accordion-collapse collapse" data-bs-parent="#iecAccordion">
+                <div class="accordion-body">
+                    @foreach (var item in new[] {
+                        "Paano Ba? Pataba? Tamang tanim?","Bio-organic","Binurong Halaman","Kompost","Pestisidyo",
+                        "PGS Briefer","FFJ","FPJ","Gabay sa Paggawa ng Katas ng Binurong Prutas (FFJ)",
+                        "Katas ng Binurong Halaman(FPJ)","Bio-Fertilizer"
+                    }) {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="OrganicSelected" value="@item">
+                            <label class="form-check-label">@item</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- OTHERS -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#others">
+                    OTHERS
+                </button>
+            </h2>
+            <div id="others" class="accordion-collapse collapse" data-bs-parent="#iecAccordion">
+                <div class="accordion-body">
+                    <input type="text" name="OthersSelected" class="form-control" placeholder="Specify other IEC materials" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg px-5">Submit Request</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    .form-container {
+        max-width: 800px;
+        margin: 60px auto;
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: 600;
+    }
+</style>
