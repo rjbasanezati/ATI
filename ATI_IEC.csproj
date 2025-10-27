@@ -5,13 +5,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  <ItemGroup>
-  <PackageReference Include="EPPlus" Version="8.2.1" />
-  <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
-</ItemGroup>
-
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="8.2.1" />
+    <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
     <PackageReference Include="DinkToPdf" Version="1.0.8" />
     <PackageReference Include="itext7" Version="9.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
@@ -27,6 +24,11 @@
     </PackageReference>
     <PackageReference Include="QuestPDF" Version="2025.7.1" />
     <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
+  </ItemGroup>
+
+  <!-- ✅ This ensures wwwroot contents (including Excel files) are published -->
+  <ItemGroup>
+    <Content Include="wwwroot\forms\IEC_Request_Template" CopyToPublishDirectory="Always" />
   </ItemGroup>
 
 </Project>

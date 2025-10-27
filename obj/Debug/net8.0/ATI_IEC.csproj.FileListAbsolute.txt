@@ -261,3 +261,9 @@ C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\obj\Debug\net8.0\refint\ATI_IEC.dll
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\obj\Debug\net8.0\ATI_IEC.pdb
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\obj\Debug\net8.0\ATI_IEC.genruntimeconfig.cache
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\obj\Debug\net8.0\ref\ATI_IEC.dll
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\out\web.config
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\out\appsettings.Development.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\out\appsettings.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\out\ATI_IEC.deps.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\out\ATI_IEC.runtimeconfig.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\out\ATI_IEC.staticwebassets.endpoints.json
