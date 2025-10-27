@@ -26,9 +26,4 @@
     <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
   </ItemGroup>
 
-  <!-- ✅ This ensures wwwroot contents (including Excel files) are published -->
-  <ItemGroup>
-    <Content Include="wwwroot\**\*" CopyToPublishDirectory="Always" />
-  </ItemGroup>
-
 </Project>
