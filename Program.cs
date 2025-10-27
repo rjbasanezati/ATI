@@ -15,22 +15,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-// Configure Data Protection to persist keys
-// (prevents “Error unprotecting the session cookie” after container restart)
+// Configure Data Protection keys
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo("/app/DataProtection-Keys"))
     .SetApplicationName("ATI_IEC");
 
 var app = builder.Build();
 
-// Automatically apply any pending migrations on startup
+// Apply database migrations automatically
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();
 }
 
-// Error handling and HTTPS
+// Configure pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -44,11 +43,10 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthorization();
 
-// Default route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// 🔧 Important for Render deployment: listen on Render’s assigned PORT
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+// 🔧 Render requires the app to listen on the PORT environment variable
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 app.Run($"http://0.0.0.0:{port}");
