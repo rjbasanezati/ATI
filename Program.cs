@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ATI_IEC.Data;
+using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,6 @@ builder.Services.AddControllersWithViews();
 // Use SQLite instead of SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite("Data Source=app.db"));
-
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
