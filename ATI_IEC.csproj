@@ -4,6 +4,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Disable default automatic inclusion of all content files -->
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,9 +28,11 @@
     <PackageReference Include="QuestPDF" Version="2025.7.1" />
     <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
   </ItemGroup>
-  <ItemGroup>
-  <Content Include="wwwroot/forms/IEC_Request_Template.xlsx" CopyToOutputDirectory="Always" />
-</ItemGroup>
 
+  <!-- Explicitly include only the content files you want -->
+  <ItemGroup>
+    <Content Include="wwwroot/**" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="wwwroot/forms/IEC_Request_Template.xlsx" CopyToOutputDirectory="Always" />
+  </ItemGroup>
 
 </Project>
