@@ -25,5 +25,9 @@
     <PackageReference Include="QuestPDF" Version="2025.7.1" />
     <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
   </ItemGroup>
+  <ItemGroup>
+  <Content Include="wwwroot/forms/IEC_Request_Template.xlsx" CopyToOutputDirectory="Always" />
+</ItemGroup>
+
 
 </Project>
