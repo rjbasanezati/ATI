@@ -279,3 +279,15 @@ C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\obj\Release\net8.0\refint\ATI_IEC.d
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\obj\Release\net8.0\ATI_IEC.pdb
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\obj\Release\net8.0\ATI_IEC.genruntimeconfig.cache
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\obj\Release\net8.0\ref\ATI_IEC.dll
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\out\web.config
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\web.config
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\appsettings.Development.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\appsettings.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\ATI_IEC.deps.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\ATI_IEC.runtimeconfig.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\ATI_IEC.staticwebassets.endpoints.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\out\appsettings.Development.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\out\appsettings.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\out\ATI_IEC.deps.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\out\ATI_IEC.runtimeconfig.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Release\net8.0\publish\publish\out\ATI_IEC.staticwebassets.endpoints.json

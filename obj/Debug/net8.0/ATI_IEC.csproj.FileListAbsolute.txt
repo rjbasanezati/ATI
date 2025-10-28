@@ -1,5 +1,7 @@
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\out\web.config
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\out\web.config
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\out\web.config
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\web.config
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\web.config
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\appsettings.json
@@ -18,6 +20,16 @@ C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\out\appset
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\out\ATI_IEC.deps.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\out\ATI_IEC.runtimeconfig.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\out\ATI_IEC.staticwebassets.endpoints.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\appsettings.Development.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\appsettings.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\ATI_IEC.deps.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\ATI_IEC.runtimeconfig.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\ATI_IEC.staticwebassets.endpoints.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\out\appsettings.Development.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\out\appsettings.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\out\ATI_IEC.deps.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\out\ATI_IEC.runtimeconfig.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\publish\publish\out\ATI_IEC.staticwebassets.endpoints.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\ATI_IEC.staticwebassets.runtime.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\ATI_IEC.staticwebassets.endpoints.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\ATI_IEC\bin\Debug\net8.0\LatoFont\Lato-Black.ttf
