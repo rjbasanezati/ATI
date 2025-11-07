@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ATI_IEC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251107034811_AddIecDocumentsTable")]
-    partial class AddIecDocumentsTable
+    [Migration("20251107073020_InitialPostgres")]
+    partial class InitialPostgres
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

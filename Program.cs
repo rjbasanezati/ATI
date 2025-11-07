@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ATI_IEC.Data;
 using Microsoft.AspNetCore.DataProtection;
-using CloudinaryDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,26 +20,16 @@ builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo("/app/DataProtection-Keys"))
     .SetApplicationName("ATI_IEC");
 
-// ------------------ Cloudinary setup ------------------
-var cloudName = "ati_db";        // replace with your Cloudinary cloud name
-var apiKey = "635115781181828";   // your Cloudinary API key
-var apiSecret = "uKCho89OrEC-r3qRi45hl9JaDfk"; // your Cloudinary API secret
-
-
-builder.Services.AddSingleton(new Cloudinary(
-    new Account(cloudName, apiKey, apiSecret)
-));
-
 var app = builder.Build();
 
-// Apply database migrations automatically
+// Apply migrations automatically
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();
 }
 
-// Configure pipeline
+// Pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -58,6 +47,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Render requires the app to listen on PORT env variable
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 app.Run($"http://0.0.0.0:{port}");
