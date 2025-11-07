@@ -1,18 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using ATI_IEC.Data;
 using ATI_IEC.Models;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace ATI_IEC.Controllers
 {
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _env;
+        private readonly Cloudinary _cloudinary;
 
-        public AdminController(ApplicationDbContext context, IWebHostEnvironment env)
+        public AdminController(ApplicationDbContext context, Cloudinary cloudinary)
         {
             _context = context;
-            _env = env;
+            _cloudinary = cloudinary;
         }
 
         // ------------------- LOGIN -------------------
@@ -74,25 +76,25 @@ namespace ATI_IEC.Controllers
 
             try
             {
-                var uploads = Path.Combine(_env.WebRootPath, "uploads");
-                if (!Directory.Exists(uploads))
-                    Directory.CreateDirectory(uploads);
-
-                var filePath = Path.Combine(uploads, file.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                using (var stream = file.OpenReadStream())
                 {
-                    file.CopyTo(stream);
+                    var uploadParams = new RawUploadParams()
+                    {
+                        File = new FileDescription(file.FileName, stream),
+                        Folder = "ati_iec" // all files go into a single Cloudinary folder
+                    };
+                    var uploadResult = _cloudinary.Upload(uploadParams);
+
+                    doc.FilePath = uploadResult.SecureUrl.ToString(); // store Cloudinary URL
+                    doc.UploadDate = DateTime.Now;
+                    if (string.IsNullOrEmpty(doc.Description))
+                        doc.Description = "";
+
+                    _context.IecDocuments.Add(doc);
+                    _context.SaveChanges();
                 }
 
-                doc.FilePath = "/uploads/" + file.FileName;
-                doc.UploadDate = DateTime.Now;
-                if (string.IsNullOrEmpty(doc.Description))
-                    doc.Description = "";
-
-                _context.IecDocuments.Add(doc);
-                _context.SaveChanges();
-
-                TempData["Success"] = "IEC uploaded successfully!";
+                TempData["Success"] = "IEC uploaded successfully to Cloudinary!";
             }
             catch (Exception ex)
             {
@@ -117,9 +119,17 @@ namespace ATI_IEC.Controllers
                 return RedirectToAction("UploadIec");
             }
 
-            var filePath = Path.Combine(_env.WebRootPath, doc.FilePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-            if (System.IO.File.Exists(filePath))
-                System.IO.File.Delete(filePath);
+            try
+            {
+                // Extract public_id from URL to delete from Cloudinary
+                var publicId = Path.GetFileNameWithoutExtension(new Uri(doc.FilePath).AbsolutePath);
+                var deletionParams = new DeletionParams(publicId);
+                _cloudinary.Destroy(deletionParams);
+            }
+            catch
+            {
+                // ignore if deletion fails
+            }
 
             _context.IecDocuments.Remove(doc);
             _context.SaveChanges();
@@ -127,7 +137,6 @@ namespace ATI_IEC.Controllers
             TempData["Success"] = "IEC deleted successfully!";
             return RedirectToAction("UploadIec");
         }
-
         // ------------------- READER LIST -------------------
         public IActionResult ReaderList()
         {

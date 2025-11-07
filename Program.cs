@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using ATI_IEC.Data;
 using Microsoft.AspNetCore.DataProtection;
+using CloudinaryDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add MVC
 builder.Services.AddControllersWithViews();
 
-// Use PostgreSQL instead of SQLite
+// Use PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -15,13 +16,22 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-// Configure Data Protection keys
+// Configure Data Protection keys (for Render)
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo("/app/DataProtection-Keys"))
     .SetApplicationName("ATI_IEC");
 
-var app = builder.Build();
+// ✅ Register Cloudinary
+var cloudName = builder.Configuration["Cloudinary:CloudName"];
+var apiKey = builder.Configuration["Cloudinary:ApiKey"];
+var apiSecret = builder.Configuration["Cloudinary:ApiSecret"];
 
+
+builder.Services.AddSingleton(new Cloudinary(
+    new Account(cloudName, apiKey, apiSecret)
+));
+
+var app = builder.Build();
 
 // Apply database migrations automatically
 using (var scope = app.Services.CreateScope())
@@ -48,6 +58,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// 🔧 Render requires the app to listen on the PORT environment variable
+// Render requires the app to listen on PORT env variable
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 app.Run($"http://0.0.0.0:{port}");
