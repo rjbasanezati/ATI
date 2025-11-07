@@ -136,14 +136,6 @@ namespace ATI_IEC.Controllers
 
             var readers = _context.UserReaders.ToList();
             return View(readers);
-        }
-        public IActionResult KpsList()
-{
-    if (HttpContext.Session.GetString("IsAdmin") != "true")
-        return RedirectToAction("Login");
-
-    var requests = _context.KpsRequests.ToList();
-    return View(requests);
 }
 
     }

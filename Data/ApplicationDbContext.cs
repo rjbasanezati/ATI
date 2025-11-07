@@ -12,6 +12,5 @@ namespace ATI_IEC.Data
 
         public DbSet<UserReader> UserReaders { get; set; } = null!;
         public DbSet<IecDocument> IecDocuments { get; set; } = null!;
-        public DbSet<KpsRequest> KpsRequests { get; set; } = null!;
     }
 }

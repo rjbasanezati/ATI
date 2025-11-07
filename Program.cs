@@ -7,9 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add MVC
 builder.Services.AddControllersWithViews();
 
-// Configure SQLite database
+// Use PostgreSQL instead of SQLite
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite("Data Source=app.db"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add session and context accessor
 builder.Services.AddSession();
@@ -21,6 +21,7 @@ builder.Services.AddDataProtection()
     .SetApplicationName("ATI_IEC");
 
 var app = builder.Build();
+
 
 // Apply database migrations automatically
 using (var scope = app.Services.CreateScope())
