@@ -61,48 +61,57 @@ namespace ATI_IEC.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult UploadIec(IecDocument doc)
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> UploadIec(IecDocument doc)
+{
+    if (HttpContext.Session.GetString("IsAdmin") != "true")
+        return RedirectToAction("Login");
+
+    var file = Request.Form.Files["uploadedFile"];
+    if (file == null || file.Length == 0)
+    {
+        TempData["Error"] = "Please select a file.";
+        return RedirectToAction("UploadIec");
+    }
+
+    try
+    {
+        var cloudinary = HttpContext.RequestServices.GetRequiredService<Cloudinary>();
+
+        using var stream = file.OpenReadStream();
+
+        var uploadParams = new CloudinaryDotNet.Actions.RawUploadParams()
         {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
-                return RedirectToAction("Login");
+            File = new CloudinaryDotNet.FileDescription(file.FileName, stream),
+            PublicId = Path.GetFileNameWithoutExtension(file.FileName)
+        };
 
-            var file = Request.Form.Files["uploadedFile"];
-            if (file == null || file.Length == 0)
-            {
-                TempData["Error"] = "Please select a file.";
-                return RedirectToAction("UploadIec");
-            }
+        var uploadResult = await cloudinary.UploadAsync(uploadParams);
 
-            try
-            {
-                using (var stream = file.OpenReadStream())
-                {
-                    var uploadParams = new RawUploadParams()
-                    {
-                        File = new FileDescription(file.FileName, stream),
-                        Folder = "ati_iec" // all files go into a single Cloudinary folder
-                    };
-                    var uploadResult = _cloudinary.Upload(uploadParams);
-
-                    doc.FilePath = uploadResult.SecureUrl.ToString(); // store Cloudinary URL
-                    doc.UploadDate = DateTime.Now;
-                    if (string.IsNullOrEmpty(doc.Description))
-                        doc.Description = "";
-
-                    _context.IecDocuments.Add(doc);
-                    _context.SaveChanges();
-                }
-
-                TempData["Success"] = "IEC uploaded successfully to Cloudinary!";
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = "Error uploading file: " + ex.Message;
-            }
-
+        if (uploadResult.StatusCode != System.Net.HttpStatusCode.OK)
+        {
+            TempData["Error"] = "Error uploading file to Cloudinary.";
             return RedirectToAction("UploadIec");
         }
+
+        doc.FilePath = uploadResult.SecureUrl.ToString();
+        doc.UploadDate = DateTime.Now;
+        if (string.IsNullOrEmpty(doc.Description))
+            doc.Description = "";
+
+        _context.IecDocuments.Add(doc);
+        await _context.SaveChangesAsync();
+
+        TempData["Success"] = "IEC uploaded successfully!";
+    }
+    catch (Exception ex)
+    {
+        TempData["Error"] = "Error uploading file: " + ex.Message;
+    }
+
+    return RedirectToAction("UploadIec");
+}
+
 
         // ------------------- DELETE IEC -------------------
         [HttpPost]
