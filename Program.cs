@@ -21,10 +21,10 @@ builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo("/app/DataProtection-Keys"))
     .SetApplicationName("ATI_IEC");
 
-// ✅ Register Cloudinary
-var cloudName = builder.Configuration["Cloudinary:CloudName"];
-var apiKey = builder.Configuration["Cloudinary:ApiKey"];
-var apiSecret = builder.Configuration["Cloudinary:ApiSecret"];
+// ------------------ Cloudinary setup ------------------
+var cloudName = "ati_db";        // replace with your Cloudinary cloud name
+var apiKey = "635115781181828";   // your Cloudinary API key
+var apiSecret = "uKCho89OrEC-r3qRi45hl9JaDfk"; // your Cloudinary API secret
 
 
 builder.Services.AddSingleton(new Cloudinary(
