@@ -50,60 +50,72 @@ namespace ATI_IEC.Controllers
             return View();
         }
 
-        // ------------------- UPLOAD IEC -------------------
-        public IActionResult UploadIec()
-        {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
-                return RedirectToAction("Login");
+// ------------------- UPLOAD IEC -------------------
+public IActionResult UploadIec()
+{
+    if (HttpContext.Session.GetString("IsAdmin") != "true")
+        return RedirectToAction("Login");
 
-            ViewBag.IecDocuments = _context.IecDocuments.ToList();
-            return View(new IecDocument());
+    ViewBag.IecDocuments = _context.IecDocuments.ToList();
+    return View(new IecDocument());
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult UploadIec(IecDocument doc)
+{
+    if (HttpContext.Session.GetString("IsAdmin") != "true")
+        return RedirectToAction("Login");
+
+    var file = Request.Form.Files["uploadedFile"];
+    if (file == null || file.Length == 0)
+    {
+        TempData["Error"] = "Please select a file before uploading.";
+        return RedirectToAction("UploadIec");
+    }
+
+    if (string.IsNullOrWhiteSpace(doc.Title))
+    {
+        TempData["Error"] = "Title is required.";
+        return RedirectToAction("UploadIec");
+    }
+
+    try
+    {
+        // Create uploads folder if not exists
+        var uploads = Path.Combine(_env.WebRootPath, "uploads");
+        if (!Directory.Exists(uploads))
+            Directory.CreateDirectory(uploads);
+
+        // Ensure unique filename
+        var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + file.FileName;
+        var filePath = Path.Combine(uploads, fileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            file.CopyTo(stream);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult UploadIec(IecDocument doc)
-        {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
-                return RedirectToAction("Login");
+        // Save data to DB
+        doc.FilePath = "/uploads/" + fileName;
+        doc.UploadDate = DateTime.Now;
+        doc.Description ??= ""; // If null, make empty string
 
-            var file = Request.Form.Files["uploadedFile"];
-            if (file == null || file.Length == 0)
-            {
-                TempData["Error"] = "Please select a file.";
-                return RedirectToAction("UploadIec");
-            }
+        _context.IecDocuments.Add(doc);
+        _context.SaveChanges();
 
-            try
-            {
-                // Save file locally under wwwroot/uploads
-                var uploads = Path.Combine(_env.WebRootPath, "uploads");
-                if (!Directory.Exists(uploads))
-                    Directory.CreateDirectory(uploads);
+        TempData["Success"] = "✅ IEC uploaded successfully!";
+    }
+    catch (Exception ex)
+    {
+        TempData["Error"] = 
+            "❌ Error uploading file: " + ex.Message +
+            (ex.InnerException != null ? " | Inner: " + ex.InnerException.Message : "");
+    }
 
-                var filePath = Path.Combine(uploads, file.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
+    return RedirectToAction("UploadIec");
+}
 
-                doc.FilePath = "/uploads/" + file.FileName;
-                doc.UploadDate = DateTime.Now;
-                if (string.IsNullOrEmpty(doc.Description))
-                    doc.Description = "";
-
-                _context.IecDocuments.Add(doc);
-                _context.SaveChanges();
-
-                TempData["Success"] = "IEC uploaded successfully!";
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = "Error uploading file: " + ex.Message;
-            }
-
-            return RedirectToAction("UploadIec");
-        }
 
         // ------------------- DELETE IEC -------------------
         [HttpPost]
