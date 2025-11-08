@@ -70,51 +70,43 @@ public IActionResult UploadIec(IecDocument doc)
     var file = Request.Form.Files["uploadedFile"];
     if (file == null || file.Length == 0)
     {
-        TempData["Error"] = "Please select a file before uploading.";
-        return RedirectToAction("UploadIec");
-    }
-
-    if (string.IsNullOrWhiteSpace(doc.Title))
-    {
-        TempData["Error"] = "Title is required.";
+        TempData["Error"] = "Please select a file.";
         return RedirectToAction("UploadIec");
     }
 
     try
     {
-        // Create uploads folder if not exists
         var uploads = Path.Combine(_env.WebRootPath, "uploads");
         if (!Directory.Exists(uploads))
             Directory.CreateDirectory(uploads);
 
-        // Ensure unique filename
-        var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + file.FileName;
-        var filePath = Path.Combine(uploads, fileName);
-
+        var filePath = Path.Combine(uploads, file.FileName);
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
             file.CopyTo(stream);
         }
 
-        // Save data to DB
-        doc.FilePath = "/uploads/" + fileName;
-        doc.UploadDate = DateTime.Now;
-        doc.Description ??= ""; // If null, make empty string
+        doc.FilePath = "/uploads/" + file.FileName;
+
+        // ✅ Must be UTC for PostgreSQL
+        doc.UploadDate = DateTime.UtcNow;
+
+        if (string.IsNullOrEmpty(doc.Description))
+            doc.Description = "";
 
         _context.IecDocuments.Add(doc);
         _context.SaveChanges();
 
-        TempData["Success"] = "✅ IEC uploaded successfully!";
+        TempData["Success"] = "IEC uploaded successfully!";
     }
     catch (Exception ex)
     {
-        TempData["Error"] = 
-            "❌ Error uploading file: " + ex.Message +
-            (ex.InnerException != null ? " | Inner: " + ex.InnerException.Message : "");
+        TempData["Error"] = "Error uploading file: " + ex.Message;
     }
 
     return RedirectToAction("UploadIec");
 }
+
 
 
         // ------------------- DELETE IEC -------------------
