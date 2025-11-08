@@ -16,7 +16,152 @@ namespace ATI_IEC.Controllers
             _context = context;
             _env = env;
         }
+        // Manage page: shows both tabs and lists
+        public IActionResult ManageFITS()
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
 
+            ViewBag.FitsCenters = _context.FitsCenters.OrderByDescending(f => f.LaunchedDate).ToList();
+            ViewBag.FitsKiosks = _context.FitsKiosks.OrderByDescending(k => k.LaunchedDate).ToList();
+            return View();
+        }
+
+        // ---------- FITS CENTER CRUD ----------
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddFitsCenter(FitsCenter model)
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
+            if (!ModelState.IsValid)
+                return RedirectToAction("ManageFITS");
+
+            model.LaunchedDate = DateTime.SpecifyKind(model.LaunchedDate, DateTimeKind.Utc);
+            _context.FitsCenters.Add(model);
+            _context.SaveChanges();
+            TempData["Success"] = "FITS Center added.";
+            return RedirectToAction("ManageFITS");
+        }
+
+        public IActionResult EditFitsCenter(int id)
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
+
+            var item = _context.FitsCenters.Find(id);
+            if (item == null) return NotFound();
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditFitsCenter(FitsCenter model)
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
+
+            if (!ModelState.IsValid) return View(model);
+
+            var dbItem = _context.FitsCenters.Find(model.Id);
+            if (dbItem == null) return NotFound();
+
+            dbItem.CenterName = model.CenterName;
+            dbItem.LaunchedDate = DateTime.SpecifyKind(model.LaunchedDate, DateTimeKind.Utc);
+            dbItem.Status = model.Status;
+            dbItem.Address = model.Address;
+            dbItem.InCharge = model.InCharge;
+            dbItem.Email = model.Email;
+
+            _context.SaveChanges();
+            TempData["Success"] = "FITS Center updated.";
+            return RedirectToAction("ManageFITS");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteFitsCenter(int id)
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
+
+            var item = _context.FitsCenters.Find(id);
+            if (item != null)
+            {
+                _context.FitsCenters.Remove(item);
+                _context.SaveChanges();
+                TempData["Success"] = "FITS Center deleted.";
+            }
+            return RedirectToAction("ManageFITS");
+        }
+
+        // ---------- FITS KIOSK CRUD ----------
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddFitsKiosk(FitsKiosk model)
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
+            if (!ModelState.IsValid)
+                return RedirectToAction("ManageFITS");
+
+            model.LaunchedDate = DateTime.SpecifyKind(model.LaunchedDate, DateTimeKind.Utc);
+            _context.FitsKiosks.Add(model);
+            _context.SaveChanges();
+            TempData["Success"] = "FITS Kiosk added.";
+            return RedirectToAction("ManageFITS");
+        }
+
+        public IActionResult EditFitsKiosk(int id)
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
+
+            var item = _context.FitsKiosks.Find(id);
+            if (item == null) return NotFound();
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditFitsKiosk(FitsKiosk model)
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
+            if (!ModelState.IsValid) return View(model);
+
+            var dbItem = _context.FitsKiosks.Find(model.Id);
+            if (dbItem == null) return NotFound();
+
+            dbItem.KioskName = model.KioskName;
+            dbItem.Address = model.Address;
+            dbItem.LaunchedDate = DateTime.SpecifyKind(model.LaunchedDate, DateTimeKind.Utc);
+
+            _context.SaveChanges();
+            TempData["Success"] = "FITS Kiosk updated.";
+            return RedirectToAction("ManageFITS");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteFitsKiosk(int id)
+        {
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+                return RedirectToAction("Login");
+
+            var item = _context.FitsKiosks.Find(id);
+            if (item != null)
+            {
+                _context.FitsKiosks.Remove(item);
+                _context.SaveChanges();
+                TempData["Success"] = "FITS Kiosk deleted.";
+            }
+            return RedirectToAction("ManageFITS");
+        }    
+
+//__________________________________________________________________________________________________________________
         // ------------------- LOGIN -------------------
         public IActionResult Login() => View();
 

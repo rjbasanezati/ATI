@@ -20,7 +20,14 @@ namespace ATI_IEC.Controllers
             _context = context;
             _env = env;
         }
+        public IActionResult Fits()
+{
+    ViewBag.FitsCenters = _context.FitsCenters.OrderByDescending(f => f.LaunchedDate).ToList();
+    ViewBag.FitsKiosks = _context.FitsKiosks.OrderByDescending(k => k.LaunchedDate).ToList();
+    return View();
+}
 
+//_______________________________________________________________________________________________________
         // 🔹 Load ISS Request Form Page
         public IActionResult ISSRF()
         {

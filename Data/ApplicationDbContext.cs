@@ -12,5 +12,8 @@ namespace ATI_IEC.Data
 
         public DbSet<UserReader> UserReaders { get; set; } = null!;
         public DbSet<IecDocument> IecDocuments { get; set; } = null!;
+        public DbSet<FitsCenter> FitsCenters { get; set; }
+        public DbSet<FitsKiosk> FitsKiosks { get; set; }
+
     }
 }

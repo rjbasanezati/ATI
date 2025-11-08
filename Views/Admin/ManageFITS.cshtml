@@ -1,0 +1,184 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Manage FITS";
+    var centers = ViewBag.FitsCenters as List<ATI_IEC.Models.FitsCenter> ?? new();
+    var kiosks = ViewBag.FitsKiosks as List<ATI_IEC.Models.FitsKiosk> ?? new();
+}
+
+<div class="container mt-4">
+    <h2>Manage FITS</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <ul class="nav nav-tabs" id="fitsTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="centers-tab" data-bs-toggle="tab" data-bs-target="#centers" type="button" role="tab">FITS Centers</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="kiosks-tab" data-bs-toggle="tab" data-bs-target="#kiosks" type="button" role="tab">FITS Kiosks</button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3">
+      <!-- Centers Tab -->
+      <div class="tab-pane fade show active" id="centers" role="tabpanel">
+        <div class="mb-3">
+            <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#addCenterForm">Add FITS Center</button>
+        </div>
+
+        <div id="addCenterForm" class="collapse">
+            <div class="card card-body mb-4">
+                <form asp-action="AddFitsCenter" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label>FITS Center</label>
+                            <input name="CenterName" class="form-control" required />
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label>Launched Date</label>
+                            <input name="LaunchedDate" type="date" class="form-control" required />
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label>Status</label>
+                            <select name="Status" class="form-control">
+                                <option>Active</option>
+                                <option>Inactive</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label>Address</label>
+                            <input name="Address" class="form-control" required />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label>Center In-Charge</label>
+                            <input name="InCharge" class="form-control" />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label>Email Address</label>
+                            <input name="Email" type="email" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-success">Save Center</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Center</th>
+                        <th>Launched</th>
+                        <th>Status</th>
+                        <th>Address</th>
+                        <th>In-Charge</th>
+                        <th>Email</th>
+                        <th style="width:140px">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var c in centers)
+                    {
+                        <tr>
+                            <td>@c.CenterName</td>
+                            <td>@c.LaunchedDate.ToLocalTime().ToString("MMMM dd, yyyy")</td>
+                            <td>@c.Status</td>
+                            <td>@c.Address</td>
+                            <td>@c.InCharge</td>
+                            <td>@c.Email</td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("EditFitsCenter", "Admin", new { id = c.Id })">Edit</a>
+                                <form asp-action="DeleteFitsCenter" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="@c.Id" />
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this center?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+      </div>
+
+      <!-- Kiosks Tab -->
+      <div class="tab-pane fade" id="kiosks" role="tabpanel">
+        <div class="mb-3">
+            <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#addKioskForm">Add FITS Kiosk</button>
+        </div>
+
+        <div id="addKioskForm" class="collapse">
+            <div class="card card-body mb-4">
+                <form asp-action="AddFitsKiosk" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label>FITS Kiosk</label>
+                            <input name="KioskName" class="form-control" required />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label>Address</label>
+                            <input name="Address" class="form-control" required />
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label>Launched Date</label>
+                            <input name="LaunchedDate" type="date" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-success">Save Kiosk</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Kiosk</th>
+                        <th>Address</th>
+                        <th>Launched</th>
+                        <th style="width:140px">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var k in kiosks)
+                    {
+                        <tr>
+                            <td>@k.KioskName</td>
+                            <td>@k.Address</td>
+                            <td>@k.LaunchedDate.ToLocalTime().ToString("MMMM dd, yyyy")</td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("EditFitsKiosk", "Admin", new { id = k.Id })">Edit</a>
+                                <form asp-action="DeleteFitsKiosk" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="@k.Id" />
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this kiosk?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // activate Bootstrap tab from URL hash (optional)
+        const hash = window.location.hash;
+        if (hash) {
+            const triggerEl = document.querySelector(`[data-bs-target="${hash}"]`);
+            if (triggerEl) new bootstrap.Tab(triggerEl).show();
+        }
+    </script>
+}

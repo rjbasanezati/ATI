@@ -1,0 +1,73 @@
+@{
+    ViewData["Title"] = "FITS Centers & Kiosks";
+    var centers = ViewBag.FitsCenters as List<ATI_IEC.Models.FitsCenter> ?? new();
+    var kiosks = ViewBag.FitsKiosks as List<ATI_IEC.Models.FitsKiosk> ?? new();
+}
+
+<div class="container mt-4">
+    <h2>FITS Centers</h2>
+    <div class="table-responsive mb-4">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>FITS Center</th>
+                    <th>Launched Date</th>
+                    <th>Status</th>
+                    <th>Address</th>
+                    <th>In-Charge</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!centers.Any())
+                {
+                    <tr><td colspan="6" class="text-center text-muted">No FITS Centers yet.</td></tr>
+                }
+                else
+                {
+                    @foreach(var c in centers)
+                    {
+                        <tr>
+                            <td>@c.CenterName</td>
+                            <td>@c.LaunchedDate.ToLocalTime().ToString("MMMM dd, yyyy")</td>
+                            <td>@c.Status</td>
+                            <td>@c.Address</td>
+                            <td>@c.InCharge</td>
+                            <td>@c.Email</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <h2>FITS Kiosks</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>FITS Kiosk</th>
+                    <th>Address</th>
+                    <th>Launched Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!kiosks.Any())
+                {
+                    <tr><td colspan="3" class="text-center text-muted">No FITS Kiosks yet.</td></tr>
+                }
+                else
+                {
+                    @foreach(var k in kiosks)
+                    {
+                        <tr>
+                            <td>@k.KioskName</td>
+                            <td>@k.Address</td>
+                            <td>@k.LaunchedDate.ToLocalTime().ToString("MMMM dd, yyyy")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
