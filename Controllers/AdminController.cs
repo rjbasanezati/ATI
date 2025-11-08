@@ -17,6 +17,7 @@ namespace ATI_IEC.Controllers
             _env = env;
         }
         // Manage page: shows both tabs and lists
+        
         public IActionResult ManageFITS()
         {
             if (HttpContext.Session.GetString("IsAdmin") != "true")
