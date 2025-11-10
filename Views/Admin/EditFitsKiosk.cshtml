@@ -1,0 +1,30 @@
+@model ATI_IEC.Models.FitsKiosk
+@{
+    ViewData["Title"] = "Edit FITS Kiosk";
+}
+
+<div class="container mt-4">
+    <h2>Edit FITS Kiosk</h2>
+
+    <form asp-action="EditFitsKiosk" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-2">
+            <label asp-for="KioskName" class="form-label"></label>
+            <input asp-for="KioskName" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label asp-for="LaunchedDate" class="form-label"></label>
+            <input asp-for="LaunchedDate" type="date" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-action="ManageFITS" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

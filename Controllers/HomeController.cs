@@ -26,6 +26,7 @@ namespace ATI_IEC.Controllers
             ViewBag.FitsKiosks = _context.FitsKiosks.OrderByDescending(k => k.LaunchedDate).ToList();
             return View();
         }
+
 public IActionResult PMEU(string folder)
 {
     // Optional: if you want to check folder value or log it

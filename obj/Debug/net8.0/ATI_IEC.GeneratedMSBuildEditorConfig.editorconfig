@@ -32,6 +32,14 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ENGR. RJBASANEZ/Desktop/ATI/ATI_IEC/Views/Admin/EditFitsCenter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEZpdHNDZW50ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ENGR. RJBASANEZ/Desktop/ATI/ATI_IEC/Views/Admin/EditFitsKiosk.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEZpdHNLaW9zay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ENGR. RJBASANEZ/Desktop/ATI/ATI_IEC/Views/Admin/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -72,8 +80,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmRcUEFTLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ENGR. RJBASANEZ/Desktop/ATI/ATI_IEC/Views/Home/Dashboard/PMEU1.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmRcUE1FVTEuY3NodG1s
+[C:/Users/ENGR. RJBASANEZ/Desktop/ATI/ATI_IEC/Views/Home/Dashboard/PMEU.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmRcUE1FVS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ENGR. RJBASANEZ/Desktop/ATI/ATI_IEC/Views/Home/Fits.cshtml]
