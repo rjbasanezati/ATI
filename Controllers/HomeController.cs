@@ -21,11 +21,19 @@ namespace ATI_IEC.Controllers
             _env = env;
         }
         public IActionResult Fits()
+        {
+            ViewBag.FitsCenters = _context.FitsCenters.OrderByDescending(f => f.LaunchedDate).ToList();
+            ViewBag.FitsKiosks = _context.FitsKiosks.OrderByDescending(k => k.LaunchedDate).ToList();
+            return View();
+        }
+public IActionResult PMEU(string folder)
 {
-    ViewBag.FitsCenters = _context.FitsCenters.OrderByDescending(f => f.LaunchedDate).ToList();
-    ViewBag.FitsKiosks = _context.FitsKiosks.OrderByDescending(k => k.LaunchedDate).ToList();
-    return View();
+    // Optional: if you want to check folder value or log it
+    // if(folder == "Dashboard") { ... }
+
+    return Redirect("https://sites.google.com/ati.da.gov.ph/atidavao-pmeu/home");
 }
+
 
 //_______________________________________________________________________________________________________
         // 🔹 Load ISS Request Form Page
