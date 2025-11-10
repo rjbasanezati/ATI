@@ -34,7 +34,6 @@ namespace ATI_IEC.Controllers
             return View("Dashboard/ISSRF");
         }
 
-        // 🔹 Handle Form Submission & Auto-Download Excel
         [HttpPost]
 [ValidateAntiForgeryToken]
 public IActionResult SubmitISSRequest(RequestFormModel model)
@@ -42,33 +41,49 @@ public IActionResult SubmitISSRequest(RequestFormModel model)
     if (!ModelState.IsValid)
         return View("Dashboard/ISSRF", model);
 
-            var filePath = Path.Combine(_env.WebRootPath, "forms", "IEC_Request_Template.xlsx");
-
-    // ✅ Correct license setup for EPPlus 8+
-      OfficeOpenXml.ExcelPackage.License.SetNonCommercialOrganization("ATI Davao Region");
-
     var templatePath = Path.Combine(_env.WebRootPath, "forms", "IEC_Request_Template.xlsx");
 
+    if (!System.IO.File.Exists(templatePath))
+    {
+        TempData["Error"] = "Template file not found.";
+        return RedirectToAction("ISSRF");
+    }
+
+    // EPPlus 8+ license context
+    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
     using (var package = new ExcelPackage(new FileInfo(templatePath)))
-            {
-        
     {
         var worksheet = package.Workbook.Worksheets[0];
-        worksheet.Cells["C11"].LoadFromCollection(model.RcefRiceSelected);
-        worksheet.Cells["I11"].LoadFromCollection(model.CFIDPSelected);
-        worksheet.Cells["C21"].LoadFromCollection(model.LivestockSelected);
-        worksheet.Cells["I21"].LoadFromCollection(model.HVCDPSelected);
-        worksheet.Cells["I31"].LoadFromCollection(model.OrganicSelected);
-        worksheet.Cells["C31"].Value = model.OthersSelected;
 
+        // Ensure collections are not null
+        var rcef = model.RcefRiceSelected ?? new List<string>();
+        var cfidp = model.CFIDPSelected ?? new List<string>();
+        var livestock = model.LivestockSelected ?? new List<string>();
+        var hvcdp = model.HVCDPSelected ?? new List<string>();
+        var organic = model.OrganicSelected ?? new List<string>();
+        var others = model.OthersSelected ?? "";
 
-        worksheet.Cells["E5"].Value = model.Name;
-        worksheet.Cells["E6"].Value = model.Office;
-        worksheet.Cells["E7"].Value = model.Purpose;
+        // Fill Excel
+        worksheet.Cells["C11"].LoadFromCollection(rcef);
+        worksheet.Cells["I11"].LoadFromCollection(cfidp);
+        worksheet.Cells["C21"].LoadFromCollection(livestock);
+        worksheet.Cells["I21"].LoadFromCollection(hvcdp);
+        worksheet.Cells["I31"].LoadFromCollection(organic);
+        worksheet.Cells["C31"].Value = others;
+
+        worksheet.Cells["E5"].Value = model.Name ?? "";
+        worksheet.Cells["E6"].Value = model.Office ?? "";
+        worksheet.Cells["E7"].Value = model.Purpose ?? "";
+        //worksheet.Cells["K5"].Value = model.DateRequested != null ? model.DateRequested.ToString("MM/dd/yyyy") : "";
+        //worksheet.Cells["K6"].Value = model.DateOfDistribution != null ? model.DateOfDistribution.ToString("MM/dd/yyyy") : "";
+        //worksheet.Cells["K7"].Value = model.TargetRecipients ?? "";
         worksheet.Cells["K5"].Value = model.DateRequested.ToString("MM/dd/yyyy");
-        worksheet.Cells["K6"].Value = model.DateOfDistribution.ToString("MM/dd/yyyy");
+        worksheet.Cells["K6"].Value = model.DateOfDistribution.ToString("MM/dd/yyyy"); 
         worksheet.Cells["K7"].Value = model.TargetRecipients;
 
+
+        // Return file as download
         var stream = new MemoryStream();
         package.SaveAs(stream);
         stream.Position = 0;
@@ -76,7 +91,7 @@ public IActionResult SubmitISSRequest(RequestFormModel model)
         var fileName = $"IEC_Request_{model.Name}_{DateTime.Now:yyyyMMdd}.xlsx";
         return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
     }
-}
+
 }public IActionResult Main() => View();
 
 // Dashboard pages

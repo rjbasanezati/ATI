@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ATI_IEC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+866bd025fc338f20dcb39ad54e32ebc6a187ff3b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac5eb973a5be1d50271ba9845f9b9591cc2f5431")]
 [assembly: System.Reflection.AssemblyProductAttribute("ATI_IEC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ATI_IEC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

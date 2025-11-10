@@ -52,6 +52,7 @@
                     RCEF & RICE
                 </button>
             </h2>
+            
             <div id="rice" class="accordion-collapse collapse" data-bs-parent="#iecAccordion">
                 <div class="accordion-body">
                     @foreach (var item in new[] {
@@ -64,7 +65,10 @@
                         "La niña at Pagpapalayan","Paggawa ng floating raft garden"
                     }) {
                         <div class="form-check">
+                       @* <input class="form-check-input" type="checkbox" asp-for="RcefRiceSelected" value="@item" id="@item.Replace(" ", "")" />
+*@
                             <input class="form-check-input" type="checkbox" name="RcefRiceSelected" value="@item" id="@item.Replace(" ", "")">
+                            
                             <label class="form-check-label" for="@item.Replace(" ", "")">@item</label>
                         </div>
                     }
@@ -89,7 +93,10 @@
                         "Pagpaparami at pamamahagi ng hybrid na niyog","Coconut-coffee farming system","Cocopeat","Pagtatanim ng kape at kakaw"
                     }) {
                         <div class="form-check">
+                           @* <input class="form-check-input" type="checkbox" asp-for="RcefRiceSelected" value="@item" id="@item.Replace(" ", "")" />
+*@
                             <input class="form-check-input" type="checkbox" name="CFIDPSelected" value="@item">
+                            
                             <label class="form-check-label">@item</label>
                         </div>
                     }
