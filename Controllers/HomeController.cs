@@ -27,14 +27,14 @@ namespace ATI_IEC.Controllers
             return View();
         }
 
-public IActionResult PMEU(string folder)
+/*public IActionResult PMEU(string folder)
 {
     // Optional: if you want to check folder value or log it
     // if(folder == "Dashboard") { ... }
 
     return Redirect("https://sites.google.com/ati.da.gov.ph/atidavao-pmeu/home");
 }
-
+*/
 
 
         //_______________________________________________________________________________________________________

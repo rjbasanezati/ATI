@@ -1,61 +1,86 @@
-@*
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Admin Dashboard</h2>
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
 
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <a asp-controller="Admin" asp-action="UploadIec" class="btn btn-primary w-100 p-3">
-                📂 Upload IEC Document
+<!-- 🔹 Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="~/videos/farm.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+<!-- 🔹 Overlay Content -->
+<div class="dashboard-overlay">
+    <div class="dashboard-container text-white">
+        <h1 class="mb-4 text-center fw-bold">Admin Dashboard</h1>
+
+        <div class="parent">
+            <a asp-controller="Admin" asp-action="UploadIec">
+                Upload IEC Document
             </a>
-        </div>
-        <div class="col-md-6 mb-3">
-            <a asp-controller="Home" asp-action="ReaderList" class="btn btn-secondary w-100 p-3">
-                👥 View Reader List
+            <a asp-controller="Home" asp-action="ReaderList">
+                View Reader List
             </a>
-        </div>
-       <div class="col-md-6 mb-3">
-            <a asp-controller="Kps" asp-action="Requests" class="btn btn-success w-100 p-3">
-                📝 View KPS Requests
+            <a asp-controller="Home" asp-action="IecLibrary">
+                View IEC Library
             </a>
-        </div>
-        
-        <div class="col-md-6 mb-3">
-            <a asp-controller="Home" asp-action="IecLibrary" class="btn btn-info w-100 p-3">
-                📖 View IEC Library
+            <a asp-controller="Admin" asp-action="ManageFITS">
+                FITS Center & Kiosk
             </a>
         </div>
     </div>
-
-    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-4">⬅ Back to Home</a>
 </div>
-*@
 
-<div class="container mt-5 text-center">
-    <h2 class="mb-4">Admin Dashboard</h2>
+<style>
+    #bg-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
 
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-4 mb-3">
-            <a asp-controller="Admin" asp-action="UploadIec" class="btn btn-primary w-100 p-3">
-                📂 Upload IEC Document
-            </a>
-        </div>
+    .dashboard-overlay {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.4);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
 
-        <div class="col-md-6 col-lg-4 mb-3">
-            <a asp-controller="Home" asp-action="ReaderList" class="btn btn-success w-100 p-3">
-                👥 View Reader List
-            </a>
-        </div>
-        <div class="col-md-6 col-lg-4 mb-3">
-            <a asp-controller="Home" asp-action="IecLibrary" class="btn btn-info w-100 p-3">
-                📖 View IEC Library
-            </a>
-        </div>
-        <div class="col-md-6 col-lg-4 mb-3">
-            <a asp-controller="Admin" asp-action="ManageFITS" class="btn btn-info w-100 p-3">
-                🏛️ FITS Center & Kiosk
-            </a>
-        </div>
-    </div>
+    .dashboard-container {
+        width: 100%;
+        max-width: 1200px;
+        text-align: center;
+    }
 
+    .parent {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* responsive */
+        gap: 20px;
+        margin-top: 40px;
+    }
 
-</div>
+    .parent > a {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 40px 20px;
+        border-radius: 12px;
+        color: #2e7d32;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .parent > a:hover {
+        background-color: rgba(232, 245, 233, 0.95);
+        transform: translateY(-5px);
+    }
+
+    h1 {
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+</style>
