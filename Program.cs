@@ -56,6 +56,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
-//app.Run($"http://0.0.0.0:{port}"); //FOR RENDER TEST
-app.Run("http://localhost:5000");  // FOR LOCAL TEST
+app.Run($"http://0.0.0.0:{port}"); //FOR RENDER TEST
+//app.Run("http://localhost:5000");  // FOR LOCAL TEST
 
