@@ -6,11 +6,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add MVC
 builder.Services.AddControllersWithViews();
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+ //   options.UseSqlite("Data Source=local.db")); // SQLite database file
+ var connectionString = "Host=db.slpneyzlmvdjpjgaeqqa.supabase.co;Database=postgres;Username=postgres;Password=atiwebsite2026;Port=5432;SSL Mode=Require;Trust Server Certificate=true";
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 // Use PostgreSQL
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+*/
 // Add session and context accessor
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
@@ -48,6 +54,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
-app.Run($"http://0.0.0.0:{port}"); //FOR RENDER TEST
-//app.Run("http://localhost:5000");  // FOR LOCAL TEST
+//app.Run($"http://0.0.0.0:{port}"); //FOR RENDER TEST
+app.Run("http://localhost:5000");  // FOR LOCAL TEST
 

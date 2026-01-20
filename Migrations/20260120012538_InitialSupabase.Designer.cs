@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ATI_IEC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251108122331_AddFitsEntities")]
-    partial class AddFitsEntities
+    [Migration("20260120012538_InitialSupabase")]
+    partial class InitialSupabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

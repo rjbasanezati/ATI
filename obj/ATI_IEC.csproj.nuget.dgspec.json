@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\ATI_IEC\\ATI_IEC.csproj": {}
+    "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\TRIAL\\ATI_IEC\\ATI_IEC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\ATI_IEC\\ATI_IEC.csproj": {
+    "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\TRIAL\\ATI_IEC\\ATI_IEC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\ATI_IEC\\ATI_IEC.csproj",
+        "projectUniqueName": "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\TRIAL\\ATI_IEC\\ATI_IEC.csproj",
         "projectName": "ATI_IEC",
-        "projectPath": "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\ATI_IEC\\ATI_IEC.csproj",
+        "projectPath": "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\TRIAL\\ATI_IEC\\ATI_IEC.csproj",
         "packagesPath": "C:\\Users\\ENGR. RJBASANEZ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\ATI_IEC\\obj\\",
+        "outputPath": "C:\\Users\\ENGR. RJBASANEZ\\Desktop\\ATI\\TRIAL\\ATI_IEC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -62,6 +62,10 @@
             "EPPlus": {
               "target": "Package",
               "version": "[8.2.1, )"
+            },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[10.0.2, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
