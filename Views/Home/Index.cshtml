@@ -1,89 +1,166 @@
 @model ATI_IEC.Models.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Agricultural Training Institute";
 }
 
-<!-- Background Video -->
-<video autoplay muted loop id="bg-video">
-    <source src="~/videos/farm.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-</video>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
 
-<div class="content-overlay">
-    <div class="text-center text-white">
-        <h1 class="display-4 mb-4">Welcome to ATI Davao Region</h1>
-        <p class="lead">Please login for ATI RTC XI Services</p>
+    <!-- SITE CSS -->
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+<header>
+    <div class="main-title">
+        AGRICULTURAL TRAINING INSTITUTE - RTC XI PORTAL
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card shadow-lg p-4">
-                <h3 class="text-center mb-3">User Login</h3>
+    <div class="header-top">
+        <nav>
+            <ul class="header-grid-menu">
+                <li data-section="info"><a>Information Services Section (ISS)</a></li>
+                <li data-section="partnership"><a>Partnership Accreditation Section (PAS)</a></li>
+                <li data-section="career"><a>Career Development and Management Section (CDMS)</a></li>
+                <li data-section="admin"><a>Admin and Finance Unit (AFU)</a></li>
+                <li data-section="planning"><a>Planning, Monitoring, Evaluation Unit (PMEU)</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-                <form asp-action="Index" method="post">
-                    <div class="form-group mb-3">
-                        <label asp-for="Email" class="form-label"></label>
-                        <input asp-for="Email" class="form-control" placeholder="Enter your email" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
 
-                    <div class="form-group mb-4">
-                        <label asp-for="Password" class="form-label"></label>
-                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
+    <video autoplay muted loop playsinline>
+        <source src="@Url.Content("~/videos/farm.mp4")" type="video/mp4" />
+    </video>
 
-                    <button type="submit" class="btn btn-success w-100">Login</button>
+    <div class="hero-layout">
 
-                    <!-- Display login errors -->
-                    @if (ViewData.ModelState[""]?.Errors.Count > 0)
-                    {
-                        <div class="alert alert-danger mt-3">
-                            @ViewData.ModelState[""].Errors[0].ErrorMessage
-                        </div>
-                    }
-                </form>
+        <div class="hero-content">
 
-                <div class="text-center mt-3">
-                    <small>Don't have an account?</small>
-                    <a asp-controller="Home" asp-action="Register" class="text-success fw-bold">Create Account</a>
-                </div>
-<div class="text-center mt-4">
-    <a class="btn btn-success w-50" asp-controller="Admin" asp-action="Login">
-        Login as Admin
-    </a>
-</div>
-
-                
+            <div id="hub" class="hero-panel active">
+                <h1>Welcome to ATI - RTC XI Portal</h1>
+                <p class="hero-text">
+                    Welcome to the ATI - RTC XI Portal, your centralized platform for accessing all ATI Davao Region online services.
+                    Through this hub, ATI staff, partners, and stakeholders can stay informed about the latest programs, initiatives,
+                    and essential announcements.
+                </p>
             </div>
+
+            <div id="info" class="hero-panel">
+                <h1>Information Services Section (ISS)</h1>
+                <p>Providing information, data, and resources to support ATI programs and services.</p>
+            </div>
+
+            <div id="partnership" class="hero-panel">
+                <h1>Partnership Accreditation Section</h1>
+                <p>Accrediting partnerships with LGUs, SUCs, and private institutions.</p>
+            </div>
+
+            <div id="career" class="hero-panel">
+                <h1>Career Development and Management Section</h1>
+                <p>Supports staff development and career growth.</p>
+            </div>
+
+            <div id="admin" class="hero-panel">
+                <h1>Admin and Finance Unit</h1>
+                <p>Handles administrative and financial operations.</p>
+            </div>
+
+            <div id="planning" class="hero-panel">
+                <h1>Planning, Monitoring, Evaluation Unit</h1>
+                <p>Focuses on planning, monitoring, and evaluation.</p>
+            </div>
+
+        </div>
+
+        <!-- LOGIN -->
+        <div class="login-card">
+            <h3>ATI Staff Login</h3>
+
+            <form asp-action="Login" method="post">
+                @Html.AntiForgeryToken()
+
+                <input asp-for="Email" placeholder="Username / Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+                <input asp-for="Password" type="password" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+                <button type="submit">Login</button>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="error-text">@ViewBag.Error</div>
+                }
+            </form>
+
+            <small>Don't have an account? <a asp-action="Register">Create Account</a></small>
+            <small>Administrative Access <a asp-controller="Admin" asp-action="Login">Sign In</a></small>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= INFO BOXES SECTION ================= -->
+
+<section class="ati-section">
+    <div class="ati-box-container">
+        <div class="ati-box">
+            <h3>TMS UPDATES</h3>
+            <ul>
+                <li>Announcement 1: Lorem ipsum dolor sit amet.</li>
+                <li>Announcement 2: Consectetur adipiscing elit.</li>
+                <li>Announcement 3: Sed do eiusmod tempor.</li>
+            </ul>
+        </div>
+        <!-- Announcement Box -->
+        <div class="ati-box">
+            <h3>ANNOUNCEMENTS</h3>
+            <ul>
+                <li>Announcement 1: Lorem ipsum dolor sit amet.</li>
+                <li>Announcement 2: Consectetur adipiscing elit.</li>
+                <li>Announcement 3: Sed do eiusmod tempor.</li>
+            </ul>
+        </div>
+
+        <!-- Calendar Box -->
+        <div class="ati-box">
+            <h3>ATI CALENDAR</h3>
+            <ul>
+                <li>Jan 25, 2026 – Training Event</li>
+                <li>Feb 10, 2026 – Evaluation Meeting</li>
+                <li>Mar 15, 2026 – Partnership Workshop</li>
+            </ul>
         </div>
     </div>
-</div>
+</section>
 
-<style>
-    #bg-video {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        z-index: -1;
-        object-fit: cover;
-    }
 
-    .content-overlay {
-        position: relative;
-        z-index: 1;
-        padding: 60px 20px;
-    }
+<footer>
+    © @DateTime.Now.Year Agricultural Training Institute - RTC XI. All Rights Reserved. - RJB
+</footer>
 
-    .card {
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 15px;
-    }
+<script>
+    const menuItems = document.querySelectorAll('nav li');
+    const heroPanels = document.querySelectorAll('.hero-panel');
 
-    a.text-success:hover {
-        text-decoration: underline;
-    }
-</style>
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const target = item.getAttribute('data-section');
+            heroPanels.forEach(panel => {
+                panel.classList.toggle('active', panel.id === target);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -21,7 +21,9 @@
             <tbody>
                 @if (!centers.Any())
                 {
-                    <tr><td colspan="6" class="text-center text-muted">No FITS Centers yet.</td></tr>
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No FITS Centers yet.</td>
+                    </tr>
                 }
                 else
                 {
@@ -29,7 +31,7 @@
                     {
                         <tr>
                             <td>@c.CenterName</td>
-                            <td>@c.LaunchedDate.ToLocalTime().ToString("MMMM dd, yyyy")</td>
+                            <td>@c.LaunchedDate.ToLocalTime().ToString("MMMM dd, yyyy")
                             <td>@c.Status</td>
                             <td>@c.Address</td>
                             <td>@c.InCharge</td>
@@ -54,7 +56,9 @@
             <tbody>
                 @if (!kiosks.Any())
                 {
-                    <tr><td colspan="3" class="text-center text-muted">No FITS Kiosks yet.</td></tr>
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">No FITS Kiosks yet.</td>
+                    </tr>
                 }
                 else
                 {

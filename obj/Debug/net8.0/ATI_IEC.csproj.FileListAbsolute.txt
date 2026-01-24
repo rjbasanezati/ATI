@@ -327,6 +327,7 @@ C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\publish\publ
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\publish\publish\out\ATI_IEC.deps.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\publish\publish\out\ATI_IEC.runtimeconfig.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\publish\publish\out\ATI_IEC.staticwebassets.endpoints.json
+C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\ATI_IEC.staticwebassets.runtime.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\ATI_IEC.staticwebassets.endpoints.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\LatoFont\Lato-Black.ttf
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\LatoFont\Lato-BlackItalic.ttf
@@ -347,7 +348,6 @@ C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\LatoFont\Lat
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\LatoFont\Lato-Thin.ttf
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\LatoFont\Lato-ThinItalic.ttf
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\LatoFont\OFL.txt
-C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\ATI_IEC.staticwebassets.runtime.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\ATI_IEC.exe
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\ATI_IEC.deps.json
 C:\Users\ENGR. RJBASANEZ\Desktop\ATI\TRIAL\ATI_IEC\bin\Debug\net8.0\ATI_IEC.runtimeconfig.json

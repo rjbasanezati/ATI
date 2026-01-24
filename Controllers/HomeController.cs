@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using OfficeOpenXml;
+using Microsoft.EntityFrameworkCore;
 
 namespace ATI_IEC.Controllers
 {
@@ -20,12 +21,24 @@ namespace ATI_IEC.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Fits()
-        {
-            ViewBag.FitsCenters = _context.FitsCenters.OrderByDescending(f => f.LaunchedDate).ToList();
-            ViewBag.FitsKiosks = _context.FitsKiosks.OrderByDescending(k => k.LaunchedDate).ToList();
-            return View();
-        }
+        public async Task<IActionResult> Fits()
+{
+    // Only fetch top 1000 rows to prevent timeout
+    ViewBag.FitsCenters = await _context.FitsCenters
+        .AsNoTracking()
+        .OrderBy(c => c.CenterName)
+        .Take(1000)
+        .ToListAsync();
+
+    ViewBag.FitsKiosks = await _context.FitsKiosks
+        .AsNoTracking()
+        .OrderBy(k => k.KioskName)
+        .Take(1000)
+        .ToListAsync();
+
+    return View();
+}
+
 
 /*public IActionResult PMEU(string folder)
 {

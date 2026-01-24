@@ -1,35 +1,435 @@
+/* ================= ROOT & DEFAULT ================= */
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    margin-bottom: 60px;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background-color: #f5f7f5;
+    color: #1f2d1f;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* ================= BOOTSTRAP OVERRIDES ================= */
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white,
+                0 0 0 0.25rem #258cfb;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
 }
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    background-color: #1f6f43;
+    color: #ffffff;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 900;
+    padding: 20px 0;
+    letter-spacing: 1px;
+}
+/* HEADER MENU GRID */
+.header-top {
+    width: 100%;
+    background-color: #1f6f43;
+}
+
+.header-top nav {
+    width: 100%;
+}
+
+.header-grid-menu {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+    gap: 10px;                             /* spacing between menu items */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.header-grid-menu li {
+    text-align: center;                     /* center text in each box */
+}
+
+.header-grid-menu a {
+    display: block;
+    padding: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header-grid-menu a:hover {
+    background-color: #14532d;
+    border-radius: 4px;
+}
+
+/* ================= NAVIGATION ================= */
+
+.header-top {
+    display: flex;
+    justify-content: center; /* center nav horizontally */
+    align-items: center;
+    width: 100%;
+}
+
+.header-top nav {
+    width: 100%; /* full width to allow centering */
+    display: flex;
+    justify-content: center; /* center the ul */
+}
+
+.centered-menu {
+    display: flex;
+    justify-content: center; /* center menu items */
+    align-items: center;
+    gap: 14px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav li {
+    cursor: pointer;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 12px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: #14532d;
+    border-radius: 4px;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero {
+    position: relative;
+    padding: 80px 40px;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+.hero video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(31, 111, 67, 0.75);
+    z-index: 1;
+}
+
+.hero-layout {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* ================= HERO PANELS ================= */
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-panel {
+    display: none;
+}
+
+.hero-panel.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 16px;
+}
+
+.hero-text {
+    text-align: justify;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+/* ================= LOGIN CARD ================= */
+
+.login-card {
+    background: #ffffff;
+    color: #1f2d1f;
+    padding: 30px;
+    border-radius: 8px;
+    width: 360px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.login-card h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1f6f43;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1f6f43;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    background-color: #14532d;
+}
+
+.login-card small {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.error-text {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* ================= ATI INFO BOXES ================= */
+
+.ati-section {
+    padding: 60px 40px;
+    background-color: #eef4ef;
+}
+
+.ati-box-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.ati-box {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.ati-box h3 {
+    color: #1f6f43;
+    border-bottom: 2px solid #1f6f43;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.ati-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.ati-box ul li {
+    margin-bottom: 8px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background-color: #163f28;
+    color: #ffffff;
+    padding: 24px 40px;
+    text-align: center;
+}
+
+/* ================= ANIMATIONS ================= */
+
 .fade-in {
     animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    .hero-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-card {
+        width: 100%;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* ================= ATI INFO BOXES ================= */
+
+.ati-section {
+    padding: 60px 40px;
+    background-color: #eef4ef;
+    display: flex;
+    justify-content: center; /* center the container */
+}
+
+.ati-box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 boxes fit nicely */
+    gap: 24px;
+    max-width: 800px; /* adjust container width */
+    width: 100%;
+}
+
+.ati-box {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    text-align: center; /* center content inside each box */
+}
+
+.ati-box h3 {
+    color: #1f6f43;
+    border-bottom: 2px solid #1f6f43;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.ati-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.ati-box ul li {
+    margin-bottom: 8px;
+}
+
+/* ================= ATI 3 BOXES ================= */
+
+.ati-section {
+    padding: 60px 40px;
+    background-color: #eef4ef;
+    display: flex;
+    justify-content: center; /* center the container */
+}
+
+.ati-box-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 24px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.ati-box {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    text-align: center; /* center content inside each box */
+    transition: transform 0.3s, box-shadow 0.3s; /* smooth hover effect */
+}
+
+.ati-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.ati-box h3 {
+    color: #1f6f43;
+    border-bottom: 2px solid #1f6f43;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.ati-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.ati-box ul li {
+    margin-bottom: 8px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1000px) {
+    .ati-box-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+}
+
+@media (max-width: 700px) {
+    .ati-box-container {
+        grid-template-columns: 1fr; /* stack vertically on small screens */
+    }
 }
 

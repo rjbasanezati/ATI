@@ -180,6 +180,35 @@ namespace ATI_IEC.Controllers
             return View();
         }
 
+/*
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult Login(string email, string password, bool IsAdmin = false)
+{
+    // ADMIN LOGIN
+    if (IsAdmin)
+    {
+        if (email == "iss.admin@gmail.com" && password == "Admin2025")
+        {
+            HttpContext.Session.SetString("IsAdmin", "true");
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        ViewBag.Error = "Invalid admin credentials!";
+        return View();
+    }
+
+    // USER LOGIN (example – replace with DB check)
+    if (email == "user@test.com" && password == "1234")
+    {
+        HttpContext.Session.SetString("IsUser", "true");
+        return RedirectToAction("Index", "Home");
+    }
+
+    ViewBag.Error = "Invalid user credentials!";
+    return View();
+}
+*/
         // ------------------- LOGOUT -------------------
         public IActionResult Logout()
         {
