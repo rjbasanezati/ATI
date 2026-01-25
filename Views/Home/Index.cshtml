@@ -12,7 +12,7 @@
     <title>@ViewData["Title"]</title>
 
     <!-- SITE CSS -->
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site-index.css" />
 </head>
 
 <body>
@@ -85,7 +85,7 @@
         <div class="login-card">
             <h3>ATI Staff Login</h3>
 
-            <form asp-action="Login" method="post">
+            <form asp-action="Index" method="post">
                 @Html.AntiForgeryToken()
 
                 <input asp-for="Email" placeholder="Username / Email" />
@@ -108,40 +108,39 @@
 
     </div>
 </section>
-
 <!-- ================= INFO BOXES SECTION ================= -->
-
 <section class="ati-section">
     <div class="ati-box-container">
         <div class="ati-box">
             <h3>TMS UPDATES</h3>
-            <ul>
-                <li>Announcement 1: Lorem ipsum dolor sit amet.</li>
-                <li>Announcement 2: Consectetur adipiscing elit.</li>
-                <li>Announcement 3: Sed do eiusmod tempor.</li>
-            </ul>
-        </div>
-        <!-- Announcement Box -->
-        <div class="ati-box">
-            <h3>ANNOUNCEMENTS</h3>
-            <ul>
-                <li>Announcement 1: Lorem ipsum dolor sit amet.</li>
-                <li>Announcement 2: Consectetur adipiscing elit.</li>
-                <li>Announcement 3: Sed do eiusmod tempor.</li>
-            </ul>
+            <!-- Dynamic content placeholder -->
+            <div id="tms-updates">
+                @* Example: loop through updates from database *@
+                @* @foreach(var update in Model.TmsUpdates) { <p>@update.Text</p> } *@
+                <p>No updates yet.</p>
+            </div>
         </div>
 
-        <!-- Calendar Box -->
+        <div class="ati-box">
+            <h3>ANNOUNCEMENTS</h3>
+            <!-- Dynamic content placeholder -->
+            <div id="announcements">
+                @* @foreach(var announcement in Model.Announcements) { <p>@announcement.Text</p> } *@
+                <p>No announcements yet.</p>
+            </div>
+        </div>
+
         <div class="ati-box">
             <h3>ATI CALENDAR</h3>
-            <ul>
-                <li>Jan 25, 2026 – Training Event</li>
-                <li>Feb 10, 2026 – Evaluation Meeting</li>
-                <li>Mar 15, 2026 – Partnership Workshop</li>
-            </ul>
+            <!-- Dynamic content placeholder -->
+            <div id="calendar-events">
+                @* @foreach(var evt in Model.CalendarEvents) { <p>@evt.Date.ToString("MMM dd, yyyy") – @evt.Title</p> } *@
+                <p>No events scheduled.</p>
+            </div>
         </div>
     </div>
 </section>
+
 
 
 <footer>

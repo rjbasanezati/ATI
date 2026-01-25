@@ -1,0 +1,261 @@
+/* ================= ROOT ================= */
+html {
+    font-size: 14px;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html { font-size: 16px; }
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background-color: #f5f7f5;
+    color: #1f2d1f;
+}
+
+/* ================= HEADER ================= */
+header {
+    background-color: #1f6f43;
+    color: white;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 900;
+    padding: 20px;
+}
+
+/* Header menu */
+.header-top {
+    background-color: #1f6f43;
+    padding: 10px 0;
+}
+
+.header-grid-menu {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-grid-menu li { text-align: center; }
+
+.header-grid-menu a {
+    display: block;
+    padding: 10px;
+    background-color: #1f6f43;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.header-grid-menu a:hover {
+    background-color: #14532d;
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Green overlay */
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 111, 67, 0.6); /* semi-transparent green */
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Hero layout (left: content, right: login) */
+.hero-layout {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.hero-content {
+    max-width: 700px;
+    color: white;
+}
+
+.hero-panel { display: none; }
+.hero-panel.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+
+.hero h1 {
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 16px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.hero-text {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
+    color: #fff;
+}
+
+/* ================= LOGIN CARD ================= */
+.login-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 360px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    color: #1f2d1f;
+}
+
+.login-card h3 { text-align: center; margin-bottom: 20px; color: #1f6f43; }
+.login-card input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; }
+.login-card button { width: 100%; padding: 10px; background-color: #1f6f43; color: white; border: none; border-radius: 4px; cursor: pointer; }
+.login-card button:hover { background-color: #14532d; }
+.login-card small { display: block; text-align: center; margin-top: 10px; }
+.error-text { color: red; margin-top: 10px; text-align: center; }
+
+/* ================= INFO BOXES ================= */
+.ati-section {
+    padding: 60px 40px;
+    background-color: #eef4ef;
+}
+
+.ati-box-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);   /* always 3 boxes */
+    gap: 24px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.ati-box {
+    background: #ffffff;
+    padding: 30px 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+
+    text-align: center;                     /* CENTER EVERYTHING */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ati-box h3 {
+    color: #1f6f43;
+    border-bottom: 2px solid #1f6f43;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.ati-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ati-box ul li {
+    margin: 10px 0;
+}
+
+/* Responsive */
+@media(max-width: 900px) {
+    .ati-box-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+    .ati-box-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ================= FOOTER ================= */
+footer {
+    background-color: #163f28;
+    color: white;
+    text-align: center;
+    padding: 24px 40px;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 1000px) {
+    .hero-layout { flex-direction: column; align-items: center; gap: 40px; }
+    .login-card { width: 100%; max-width: 400px; }
+}
+
+@media(max-width: 900px) { .ati-box-container { grid-template-columns: repeat(2, 1fr); } }
+
+@media(max-width: 600px) {
+    .ati-box-container { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 26px; }
+}
+
+.ati-section {
+    padding: 60px 40px;
+    background-color: #eef4ef;
+}
+
+.ati-box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center; /* center all text inside boxes */
+}
+
+.ati-box {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.ati-box h3 {
+    color: #1f6f43;
+    border-bottom: 2px solid #1f6f43;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.ati-box p {
+    margin: 8px 0;
+    font-size: 16px;
+}

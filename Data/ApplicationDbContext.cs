@@ -14,6 +14,11 @@ namespace ATI_IEC.Data
         public DbSet<IecDocument> IecDocuments { get; set; } = null!;
         public DbSet<FitsCenter> FitsCenters { get; set; }
         public DbSet<FitsKiosk> FitsKiosks { get; set; }
+        public DbSet<TMSUpdate> TMSUpdates { get; set; }
+         public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<CalendarActivity> CalendarActivities { get; set; }
+        public DbSet<AdminUpdate> AdminUpdates { get; set; }
+
 
     }
 }

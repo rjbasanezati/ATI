@@ -1,0 +1,43 @@
+@model ATI_IEC.Models.AdminUpdate
+
+@{
+    ViewData["Title"] = "Manage Updates";
+}
+
+<section class="hero">
+    <video autoplay muted loop playsinline>
+        <source src="~/videos/farm.mp4" type="video/mp4" />
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-layout">
+        <div class="login-card landscape">
+            <h3 class="text-center mb-3">Admin: Manage Updates</h3>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success text-center mb-3">@TempData["Success"]</div>
+            }
+
+            <form asp-action="SaveUpdates" method="post">
+                <div class="form-group mb-3">
+                    <label asp-for="TMSUpdates"></label>
+                    <textarea asp-for="TMSUpdates" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Announcements"></label>
+                    <textarea asp-for="Announcements" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="CalendarEvents"></label>
+                    <textarea asp-for="CalendarEvents" class="form-control" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Save Updates</button>
+            </form>
+        </div>
+    </div>
+</section>
