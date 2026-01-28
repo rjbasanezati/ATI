@@ -198,23 +198,106 @@ public IActionResult SaveUpdates(AdminUpdate model)
 }
 
 
+
 //__________________________________________________________________________________________________________________
         // ------------------- LOGIN -------------------
-        public IActionResult Login() => View();
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Login(string username, string password)
+
+       public IActionResult Login()
+{
+    return View();
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult Login(string username, string password)
+{
+    if (username == "ISSAdmin" && password == "ISS2025")
+    {
+        HttpContext.Session.SetString("IsAdmin", "true");
+        HttpContext.Session.SetString("AdminType", "ISS");
+        return RedirectToAction("ISSDashboard");
+    }
+    else if (username == "CDMSAdmin" && password == "CDMS2025")
+    {
+        HttpContext.Session.SetString("IsAdmin", "true");
+        HttpContext.Session.SetString("AdminType", "CDMS");
+        return RedirectToAction("CDMSDashboard");
+    }
+    else if (username == "PASAdmin" && password == "PAS2025")
+    {
+        HttpContext.Session.SetString("IsAdmin", "true");
+        HttpContext.Session.SetString("AdminType", "PAS");
+        return RedirectToAction("PASDashboard");
+    }
+    else if (username == "PMEUAdmin" && password == "PMEU2025")
+    {
+        HttpContext.Session.SetString("IsAdmin", "true");
+        HttpContext.Session.SetString("AdminType", "PMEU");
+        return RedirectToAction("PMEUDashboard");
+    }
+    else if (username == "AFUAdmin" && password == "AFU2025")
+    {
+        HttpContext.Session.SetString("IsAdmin", "true");
+        HttpContext.Session.SetString("AdminType", "AFU");
+        return RedirectToAction("AFUDashboard");
+    }
+
+    ViewBag.Error = "Invalid credentials!";
+    return View();
+}
+ public IActionResult ISSDashboard()
         {
-            if (username == "ISS_ATI_Admin" && password == "Admin2025")
+            // Only allow access if logged in
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
             {
-                HttpContext.Session.SetString("IsAdmin", "true");
-                return RedirectToAction("Dashboard");
+                return RedirectToAction("Login", "Admin");
             }
 
-            ViewBag.Error = "Invalid credentials!";
-            return View();
+            return View(); // Returns Views/Admin/ISSDashboard.cshtml
         }
+ public IActionResult CDMSDashboard()
+        {
+            // Only allow access if logged in
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View(); // Returns Views/Admin/ISSDashboard.cshtml
+        }
+
+public IActionResult PASDashboard()
+        {
+            // Only allow access if logged in
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View(); // Returns Views/Admin/ISSDashboard.cshtml
+        }
+        public IActionResult AFUDashboard()
+        {
+            // Only allow access if logged in
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View(); // Returns Views/Admin/ISSDashboard.cshtml
+        }
+        public IActionResult PMEUDashboard()
+        {
+            // Only allow access if logged in
+            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View(); // Returns Views/Admin/ISSDashboard.cshtml
+        }
+
 
 /*
 [HttpPost]

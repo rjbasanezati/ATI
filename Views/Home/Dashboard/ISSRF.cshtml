@@ -4,42 +4,117 @@
     ViewData["Title"] = "IEC Request Form";
 }
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="~/css/site-index.css" />
+
+    <style>
+        body {
+            background-color: #f4f6f5;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        header {
+            background-color: #1f6f43;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .form-container {
+            max-width: 1100px; /* LANDSCAPE WIDTH */
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        .form-section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f6f43;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        @@media print {
+            body {
+                background: none;
+            }
+            header {
+                color: black;
+                background: none;
+            }
+            .form-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    AGRICULTURAL TRAINING INSTITUTE - RTC XI  
+    <div style="font-size:14px;font-weight:400;">IEC REQUEST FORM</div>
+</header>
+
 <div class="form-container">
-    <h2 class="text-success mb-4 text-center">IEC Request Form</h2>
 
     <form asp-action="SubmitISSRequest" asp-controller="Home" method="post">
+
+        <!-- BASIC INFORMATION -->
+        <div class="form-section-title">Request Information</div>
+
         <div class="row mb-3">
             <div class="col-md-6">
-                <label asp-for="Name" class="form-label">Name</label>
+                <label asp-for="Name">Name</label>
                 <input asp-for="Name" class="form-control" />
             </div>
             <div class="col-md-6">
-                <label asp-for="Office" class="form-label">Office</label>
+                <label asp-for="Office">Office</label>
                 <input asp-for="Office" class="form-control" />
             </div>
         </div>
 
         <div class="mb-3">
-            <label asp-for="Purpose" class="form-label">Purpose of Request</label>
-            <textarea asp-for="Purpose" class="form-control" rows="3"></textarea>
+            <label asp-for="Purpose">Purpose of Request</label>
+            <textarea asp-for="Purpose" class="form-control" rows="2"></textarea>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb-4">
             <div class="col-md-6">
-                <label asp-for="DateRequested" class="form-label">Date Requested</label>
+                <label asp-for="DateRequested">Date Requested</label>
                 <input asp-for="DateRequested" type="date" class="form-control" />
             </div>
             <div class="col-md-6">
-                <label asp-for="DateOfDistribution" class="form-label">Date of Distribution</label>
+                <label asp-for="DateOfDistribution">Date of Distribution</label>
                 <input asp-for="DateOfDistribution" type="date" class="form-control" />
             </div>
         </div>
 
-        <div class="mb-3">
-            <label asp-for="TargetRecipients" class="form-label">Target Recipients</label>
+        <div class="mb-4">
+            <label asp-for="TargetRecipients">Target Recipients</label>
             <input asp-for="TargetRecipients" class="form-control" />
         </div>
-        <!-- IEC Checklist Section -->
+
+        <!-- IEC MATERIALS -->
+        <div class="form-section-title">IEC Materials Requested</div>
 <div class="mb-4">
     <label class="form-label fw-bold">Select IEC Materials</label>
 
@@ -191,29 +266,15 @@
     </div>
 </div>
 
-
-        <div class="text-center">
-            <button type="submit" class="btn btn-success btn-lg px-5">Submit Request</button>
+        <!-- SUBMIT -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg px-5">
+                Submit Request
+            </button>
         </div>
+
     </form>
 </div>
 
-<style>
-    body {
-        background-color: #f8f9fa;
-        font-family: "Segoe UI", sans-serif;
-    }
-
-    .form-container {
-        max-width: 800px;
-        margin: 60px auto;
-        background-color: white;
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    label {
-        font-weight: 600;
-    }
-</style>
+</body>
+</html>

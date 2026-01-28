@@ -1,13 +1,198 @@
-<div class="container mt-5" style="max-width:400px;">
-    <h2>Admin Login</h2>
+@model ATI_IEC.Models.LoginViewModel
 
-    @if(ViewBag.Error != null)
+@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        /* ================= HERO SECTION ================= */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(31, 111, 67, 0.6);
+            z-index: 1;
+        }
+
+        .hero-layout {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+        }
+
+        /* ================= LOGIN / REGISTER CARD ================= */
+        .login-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 400px;
+            max-width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-card h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1f6f43;
+        }
+
+        .login-card input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .login-card button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1f6f43;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-card button:hover {
+            background-color: #14532d;
+        }
+
+        .error-text {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* ================= HEADER ================= */
+        header {
+            background-color: #1f6f43;
+            color: white;
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            padding: 20px;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background-color: #163f28;
+            color: white;
+            text-align: center;
+            padding: 24px 40px;
+        }
+
+        /* ================= LANDSCAPE FORM ================= */
+        .login-card.landscape {
+            width: 700px;
+            max-width: 95%;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-card.landscape form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-row .col-md-6 {
+            flex: 1 1 48%;
+        }
+
+        @@media (max-width: 900px) {
+            .login-card.landscape {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .form-row .col-md-6 {
+                flex: 1 1 100%;
+            }
+        }
+
+        @@media (max-width: 1000px) {
+            .login-card {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    AGRICULTURAL TRAINING INSTITUTE - RTC XI PORTAL
+</header>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+
+    <video autoplay muted loop playsinline>
+        <source src="@Url.Content("~/videos/farm.mp4")" type="video/mp4" />
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-layout">
+
+        <!-- ================= REGISTRATION CARD ================= -->
+        <div class="login-card landscape">
+            <h3 class="text-center mb-3">ATI Admin Staff Login</h3>
+            @if(ViewBag.Error != null)
     {
         <div class="alert alert-danger">@ViewBag.Error</div>
     }
 
-    <form asp-action="Login" method="post">
-        <div class="form-group mb-3">
+
+            <form asp-action="Login" method="post">
+                <div class="form-group mb-3">
             <label>Username</label>
             <input type="text" name="username" class="form-control" required />
         </div>
@@ -18,5 +203,20 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-</div>
+             </form>
+      <small class="d-block text-center mt-3">
+    Don't have an Admin account? 
+    <a href="https://www.facebook.com/rj.basanez.2025" target="_blank">Contact me</a>
+</small>
+ </div>
+
+    </div>
+</section>
+
+<footer>
+    © @DateTime.Now.Year Agricultural Training Institute - RTC XI. All Rights Reserved. - RJB
+</footer>
+
+</body>
+</html>
+

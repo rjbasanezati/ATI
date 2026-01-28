@@ -1,0 +1,132 @@
+@{
+    ViewData["Title"] = "AFU Admin Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/site-main.css" />
+
+<style>
+    /* ================= HERO ================= */
+    .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .hero video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(31, 111, 67, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        color: #fff;
+        font-size: 36px;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* ================= BUTTON GRID ================= */
+    .iss-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1000px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .iss-btn {
+        background-color: #2e7d32;
+        color: #ffffff;
+        padding: 25px 20px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .iss-btn:hover {
+        background-color: #1f6f43;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @@media (max-width: 900px) {
+        .iss-buttons {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media (max-width: 600px) {
+        .iss-buttons {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<header>
+    <div class="main-title">
+        AGRICULTURAL TRAINING INSTITUTE - RTC XI PORTAL
+    </div>
+</header>
+
+<section class="hero">
+    <video autoplay muted loop playsinline>
+        <source src="@Url.Content("~/videos/farm.mp4")" type="video/mp4" />
+    </video>
+
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1>AFU Admin Dashboard</h1>
+
+            <div class="iss-buttons">
+                <a asp-controller="Admin" asp-action="UploadIec" class="iss-btn">
+                    Upload IEC Document
+                </a>
+
+                <a asp-controller="Home" asp-action="ReaderList" class="iss-btn">
+                    View User List
+                </a>
+
+                <a asp-controller="Home" asp-action="IecLibrary" class="iss-btn">
+                    View IEC Library
+                </a>
+
+                <a asp-controller="Admin" asp-action="ManageFITS" class="iss-btn">
+                    FITS Center & Kiosk
+                </a>
+
+                <a asp-controller="Admin" asp-action="ManageUpdates" class="iss-btn">
+                    Manage Updates
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © @DateTime.Now.Year Agricultural Training Institute - RTC XI. All Rights Reserved. – RJB
+</footer>
