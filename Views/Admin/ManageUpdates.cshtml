@@ -1,43 +1,217 @@
-@model ATI_IEC.Models.AdminUpdate
+@*@model ATI_IEC.Models.UpdateItem
 
 @{
     ViewData["Title"] = "Manage Updates";
 }
 
+<link rel="stylesheet" href="~/css/site-main.css" />
+
+<style>
+
+/* ================= HERO ================= */
+
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;   /* instead of height */
+    overflow: auto;     /* allow scrolling */
+}
+
+.hero-overlay {
+    min-height: 100%;
+}
+
+
+.hero video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(31,111,67,.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ================= CONTENT ================= */
+
+.hero-content {
+    width: 100%;
+    max-width: 1100px;
+    color: white;
+}
+
+.hero-content h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,.6);
+}
+
+/* ================= CARD ================= */
+
+.upload-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.upload-card h2,
+.upload-card h3 {
+    color: #1f6f43;
+}
+
+/* ================= BUTTON ================= */
+
+.btn-primary {
+    background: #1f6f43;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #14532d;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@@media (max-width:768px) {
+
+    .upload-card {
+        padding: 20px;
+    }
+
+    iframe {
+        height: 200px;
+    }
+}
+.upload-card label,
+.upload-card h2,
+.upload-card h3 {
+    color: #1f6f43;
+    font-weight: 600;
+}
+
+table {
+    background: white;
+}
+
+th {
+    color: #1f6f43;
+}
+
+td {
+    vertical-align: middle;
+}
+
+</style>
+
+<header>
+    <div class="main-title">
+        AGRICULTURAL TRAINING INSTITUTE - RTC XI PORTAL
+    </div>
+</header>
+
 <section class="hero">
+
     <video autoplay muted loop playsinline>
-        <source src="~/videos/farm.mp4" type="video/mp4" />
+        <source src="@Url.Content("~/videos/farm.mp4")" type="video/mp4" />
     </video>
 
-    <div class="hero-overlay"></div>
+    <div class="hero-overlay">
 
-    <div class="hero-layout">
-        <div class="login-card landscape">
-            <h3 class="text-center mb-3">Admin: Manage Updates</h3>
+        <div class="hero-content">
 
-            @if (TempData["Success"] != null)
-            {
-                <div class="alert alert-success text-center mb-3">@TempData["Success"]</div>
-            }
+            <div class="upload-card">
 
-            <form asp-action="SaveUpdates" method="post">
-                <div class="form-group mb-3">
-                    <label asp-for="TMSUpdates"></label>
-                    <textarea asp-for="TMSUpdates" class="form-control" rows="3"></textarea>
-                </div>
+                <h3 class="text-center mb-3">Manage Updates</h3>
 
-                <div class="form-group mb-3">
-                    <label asp-for="Announcements"></label>
-                    <textarea asp-for="Announcements" class="form-control" rows="3"></textarea>
-                </div>
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success text-center mb-3">
+                        @TempData["Success"]
+                    </div>
+                }
 
-                <div class="form-group mb-3">
-                    <label asp-for="CalendarEvents"></label>
-                    <textarea asp-for="CalendarEvents" class="form-control" rows="3"></textarea>
-                </div>
+                <form asp-action="SaveUpdates" method="post">
 
-                <button type="submit" class="btn btn-success w-100">Save Updates</button>
-            </form>
+                    <div class="form-group mb-3">
+                        <label asp-for="TMSUpdates"></label>
+                        <textarea asp-for="TMSUpdates" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Announcements"></label>
+                        <textarea asp-for="Announcements" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="CalendarEvents"></label>
+                        <textarea asp-for="CalendarEvents" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        Save Updates
+                    </button>
+
+                </form>
+
+            </div>
+
         </div>
+
     </div>
+
 </section>
+
+
+<footer>
+    © @DateTime.Now.Year Agricultural Training Institute - RTC XI. All Rights Reserved – RJB
+</footer>
+*@
+@model ATI_IEC.Models.AdminViewModel
+
+<div class="upload-card">
+    <h3 class="text-center mb-3">Manage Updates</h3>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success text-center">@TempData["Success"]</div>
+    }
+
+    @foreach (var type in new[] { "TMS", "Announcement", "Calendar" })
+    {
+        <div class="mb-4">
+            <h4>@type Updates</h4>
+
+            <!-- Add new update -->
+            <form asp-action="AddUpdate" method="post" class="mb-2">
+                <input type="hidden" name="type" value="@type" />
+                <textarea name="content" class="form-control mb-1" placeholder="Add new @type update..."></textarea>
+                <button type="submit" class="btn btn-success btn-sm">Add</button>
+            </form>
+
+            <!-- List existing updates with delete button -->
+            <ul class="list-group">
+                @foreach (var item in type == "TMS" ? Model.TMSUpdates :
+                                        type == "Announcement" ? Model.Announcements :
+                                        Model.CalendarEvents)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @item.Content
+                        <form asp-action="DeleteUpdate" method="post" style="margin:0;">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>

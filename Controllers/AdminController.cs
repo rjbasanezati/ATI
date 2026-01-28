@@ -163,39 +163,8 @@ namespace ATI_IEC.Controllers
         }    
 
 // ------------------- MANAGE UPDATES (TMS, Announcements, Calendar) -------------------
-public IActionResult ManageUpdates()
-{
-    if (HttpContext.Session.GetString("IsAdmin") != "true")
-        return RedirectToAction("Login");
+// Show admin manage updates page
 
-    // Load the latest update
-    var latestUpdate = _context.AdminUpdates
-        .OrderByDescending(u => u.Id)
-        .FirstOrDefault();
-
-    return View(latestUpdate ?? new AdminUpdate());
-}
-
-[HttpPost]
-[ValidateAntiForgeryToken]
-public IActionResult SaveUpdates(AdminUpdate model)
-{
-    if (HttpContext.Session.GetString("IsAdmin") != "true")
-        return RedirectToAction("Login");
-
-    if (!ModelState.IsValid)
-        return View("ManageUpdates", model);
-
-    // Save to DB
-    model.CreatedAt = DateTime.UtcNow;
-    model.UpdatedAt = DateTime.UtcNow;
-
-    _context.AdminUpdates.Add(model);
-    _context.SaveChanges();
-
-    TempData["Success"] = "Updates saved successfully!";
-    return RedirectToAction("ManageUpdates");
-}
 
 
 
@@ -329,20 +298,7 @@ public IActionResult Login(string email, string password, bool IsAdmin = false)
 }
 */
         // ------------------- LOGOUT -------------------
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Remove("IsAdmin");
-            return RedirectToAction("Index", "Home");
-        }
-
-        // ------------------- DASHBOARD -------------------
-        public IActionResult Dashboard()
-        {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
-                return RedirectToAction("Login");
-
-            return View();
-        }
+        
 
 // ------------------- UPLOAD IEC -------------------
 public IActionResult UploadIec()

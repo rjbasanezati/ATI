@@ -17,7 +17,8 @@ namespace ATI_IEC.Data
         public DbSet<TMSUpdate> TMSUpdates { get; set; }
          public DbSet<Announcement> Announcements { get; set; }
         public DbSet<CalendarActivity> CalendarActivities { get; set; }
-        public DbSet<AdminUpdate> AdminUpdates { get; set; }
+        
+        
 
 
     }

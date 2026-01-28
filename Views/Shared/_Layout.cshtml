@@ -76,17 +76,7 @@
         <img src="~/images/Header.png" alt="ATI Header" class="header-image" />
         <div class="header-overlay"></div>
 
-        <div class="header-bar">
-            @if (HttpContextAccessor.HttpContext?.Session.GetString("IsAdmin") == "true")
-            {
-                <a asp-controller="Admin" asp-action="Dashboard" class="btn-header">Dashboard</a>
-                <a asp-controller="Admin" asp-action="Logout" class="btn-header ms-2" style="background-color: rgba(180, 0, 0, 0.85);">Logout</a>
-            }
-            else
-            {
-                //<a asp-controller="Admin" asp-action="Login" class="btn-header">Admin Login</a>
-            }
-        </div>
+        
     </header>
 
     <!-- ✅ Page Content -->

@@ -40,6 +40,7 @@ namespace ATI_IEC.Controllers
 }
 
 
+
 /*public IActionResult PMEU(string folder)
 {
     // Optional: if you want to check folder value or log it
@@ -122,8 +123,10 @@ public IActionResult BAC() => View("Dashboard/BAC");
 public IActionResult Index()
 {
     // Pass a LoginViewModel to the view, not UserReader
+    
     return View(new LoginViewModel());
 }
+
 
 // POST: Handle login
 [HttpPost]

@@ -1,22 +1,10 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace ATI_IEC.Models
+public class UpdateItem
 {
-    public class AdminUpdate
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        [Display(Name = "TMS Updates")]
-        public string TMSUpdates { get; set; }
+    public string Type { get; set; } // "TMS", "Announcement", "Calendar"
 
-        [Display(Name = "Announcements")]
-        public string Announcements { get; set; }
+    public string Content { get; set; }
 
-        [Display(Name = "Calendar Events")]
-        public string CalendarEvents { get; set; }
-
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-    }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 }
