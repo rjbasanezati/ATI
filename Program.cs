@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews();
 // PostgreSQL (Render)
 
     var connectionString =
-    "Host=dpg-d6p0nhn5gffc738rnckg-a;" +
+    "Host=dpg-d6p0nhn5gffc738rnckg-a.singapore-postgres.render.com;" +
     "Port=5432;" +
     "Database=atidbxi;" +
     "Username=atidbxi_user;" +
