@@ -8,11 +8,11 @@ builder.Services.AddControllersWithViews();
 // PostgreSQL (Render)
 
     var connectionString =
-    "Host=dpg-d5qdr995pdvs739440fg-a.singapore-postgres.render.com;" +
+    "Host=dpg-d6p0nhn5gffc738rnckg-a;" +
     "Port=5432;" +
-    "Database=database_lbv2;" +
-    "Username=database_lbv2_user;" +
-    "Password=QASjAq2oY94ohGfeUKxZRhNB0lTKEccb;" +
+    "Database=atidbxi;" +
+    "Username=atidbxi_user;" +
+    "Password=G5Hpo4VysyFwOGqdiEn6cQWlf9uXBmxu;" +
     "SSL Mode=Require;" +
     "Trust Server Certificate=true;";
 
@@ -26,7 +26,7 @@ builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-// ❌ DO NOT auto-migrate on Render
+//  DO NOT auto-migrate on Render
 if (app.Environment.IsDevelopment())
 {
     using var scope = app.Services.CreateScope();
